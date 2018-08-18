@@ -1,0 +1,94 @@
+<div class="row" id="add-category-news">
+  <div class="col-12 title mb-3">
+    Tạo người dùng
+  </div>
+  <!-- search -->
+  <div class="col-12 search">
+    <div class="form-inline my-2 my-lg-0 d-flex justify-content-end">
+      <input class="form-control mr-sm-2" type="search" placeholder="Nhập từ khóa tìm kiếm..." aria-label="Search" [(ngModel)]="searchText">
+      <!-- <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button> -->
+    </div>
+  </div>
+
+  <!-- wrap-main -->
+  <div class="wrap-main col-12 mt-3">
+    <div class="row">
+      <!-- left -->
+      <div class="left col-5">
+          <!-- title-left -->
+          <div class="title-left text-bold">
+            Thêm chuyên mục
+          </div>
+          <!-- form add-category -->
+          <form class="mt-2 wrap-form" #formCategoryNews="ngForm" (ngSubmit)="onSubmit(formCategoryNews)">
+            <div class="form-group">
+              <label for="name-category">Tên</label>
+              <input type="text" 
+              class="form-control" 
+              id="name-category" 
+              aria-describedby="emailHelp"
+              placeholder="Tên chuyên mục"
+              ngModel
+              name="nameCategory"
+              #nameCategory="ngModel"
+              required
+              [ngClass]="(nameCategory?.errors?.required && nameCategory?.touched) || (nameCategory?.errors?.required && formCategoryNews.submitted) || (isErrAdd)  ? 
+              'is-invalid' : 
+              ((nameCategory?.touched && !nameCategory?.errors?.required) || (nameCategory?.errors?.required && formCategoryNews.submitted)  ? 
+              'is-valid' : ''
+              )">
+              <div class="invalid-feedback" *ngIf="!isErrAdd">
+                Vui lòng nhập tên chuyên mục !!
+              </div>
+              <div class="invalid-feedback" *ngIf="isErrAdd">
+                  Chuyên mục này đã tồn tại !!
+              </div>
+              <small id="emailHelp" class="form-text text-muted">Tên riêng sẽ hiển thị trên trang mạng của bạn.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm</button>
+          </form>
+      </div>
+
+      <!-- right -->
+      <div class="right col-7 bg-light border rounded">
+        <table class="table table-hover">
+          <thead>
+            <tr class="text-dark">
+              <th scope="col">STT</th>
+              <th scope="col" (click)="sort('name_category')">Tên chuyên mục
+                <span class="sort_1" *ngIf="key == 'name_category' && reverse"></span>
+                <span class="sort" *ngIf="key == 'name_category' && !reverse"></span>
+              </th>
+              <th class="text-center" scope="col">Chỉnh sửa</th>
+              <th class="text-center" scope="col">Xóa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let categoryNews of listCategoryNews | orderBy: key : reverse | searchCategoryNews : searchText; let i=index;" >
+              <th scope="row">{{ i + 1 }}</th>
+
+              <td (input)="changeValue(categoryNews.id_category, $event)">
+                <ng-container *ngIf="!categoryNews.editable">{{ categoryNews.name_category }}</ng-container>
+                <ng-container *ngIf="categoryNews.editable">
+                  <input type="text" class="form-control" value="{{ categoryNews.name_category }}">
+                </ng-container>
+              </td>
+
+              <td class="text-center">
+                  <ng-container *ngIf="!categoryNews.editable">
+                    <i class="pointer text-primary fa fa-pencil"  (click)="categoryNews.editable = !categoryNews.editable"></i>
+                  </ng-container>
+                  <ng-container *ngIf="categoryNews.editable">
+                    <button class="btn btn-primary" (click)="edit(categoryNews.id_category);categoryNews.editable = !categoryNews.editable">Lưu</button>
+                  </ng-container>
+              </td>
+              <td class="text-center"><i class="pointer text-danger fa fa-trash-o" (click)="delete(categoryNews.id_category)"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end right -->
+    </div>
+  </div>
+
+</div>

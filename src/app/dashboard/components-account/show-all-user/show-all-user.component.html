@@ -1,0 +1,78 @@
+<div class="row" id="show-all">
+    <div class="col-12 title mb-3">
+      Tất cả tài khoản <button type="button" class="btn btn-secondary"><a routerLink="/dashboard/register-user">Thêm tài khoản</a></button>
+    </div>
+  
+    <!-- search -->
+    <div class="col-12 search">
+      <div class="form-inline my-2 my-lg-0 d-flex justify-content-end">
+        <input class="form-control mr-sm-2" [(ngModel)]="textSearch" type="search" placeholder="Nhập từ khóa tìm kiếm..." aria-label="Search">
+      </div>
+    </div>
+        
+    <div class="col-12 bg-light border rounded mt-2">
+      <table class="table table-hover">
+        <thead>
+          <tr class="text-dark">
+            <th scope="col">STT</th>
+            <th scope="col" (click)="sort('name_user')">Tên người dùng
+                <span class="sort_1" *ngIf="key == 'name_user' && reverse"></span>
+                <span class="sort" *ngIf="key == 'name_user' && !reverse"></span>
+            </th>
+
+            <th scope="col" (click)="sort('name_position')">Vị trí
+                <span class="sort_1" *ngIf="key == 'name_position' && reverse"></span>
+                <span class="sort" *ngIf="key == 'name_position' && !reverse"></span>
+            </th>
+
+            <th scope="col" (click)="sort('name_account')">Tên tài khoản
+                <span class="sort_1" *ngIf="key == 'name_account' && reverse"></span>
+                <span class="sort" *ngIf="key == 'name_account' && !reverse"></span>
+            </th>
+
+            <th scope="col" (click)="sort('email_user')">Email
+                <span class="sort_1" *ngIf="key == 'email_user' && reverse"></span>
+                <span class="sort" *ngIf="key == 'email_user' && !reverse"></span>
+            </th>
+
+            <th scope="col" (click)="sort('phone_user')">SĐT
+                <span class="sort_1" *ngIf="key == 'phone_user' && reverse"></span>
+                <span class="sort" *ngIf="key == 'phone_user' && !reverse"></span>
+            </th>
+
+            <th scope="col" (click)="sort('type_account')">Loại tài khoản
+                <span class="sort_1" *ngIf="key == 'type_account' && reverse"></span>
+                <span class="sort" *ngIf="key == 'type_account' && !reverse"></span>
+            </th>
+
+            <th class="text-center" scope="col">Chỉnh sửa</th>
+            <th class="text-center" scope="col">Xóa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of list_user | orderBy: key : reverse | searchAccount : textSearch | paginate: { itemsPerPage: 10, currentPage: p }; let i=index;">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ user?.name_user }}</td>
+            <td>{{ user?.name_position }}</td>
+            <td>{{ user?.name_account }}</td>
+            <td>{{ user?.email_user }}</td>
+            <td>{{ user?.phone_user }}</td>
+            <td>
+              {{ user?.type_account }}
+            </td>
+            <td class="text-center"><a routerLink="/dashboard/edit-user/{{user?.id_account}}"><i class="pointer text-primary fa fa-pencil"></i></a></td>
+            <td class="text-center"><i class="pointer text-danger fa fa-trash-o" (click)="delete(user?.id_account)"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- pagination -->
+    <div class="mt-4 text-center w-100">
+      <pagination-controls
+      class="my-pagination"
+      (pageChange)="p = $event"
+      previousLabel=""
+      nextLabel=""
+      ></pagination-controls>
+    </div>
+  </div>

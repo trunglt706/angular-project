@@ -1,0 +1,249 @@
+<div id="contact">
+  <div class="row">
+    <!-- title -->
+    <div class="col-12 title">
+      <div class="wrap">
+        <span class="icon">
+          <i class="fa fa-bookmark"></i>
+        </span>
+        <span class="text">
+          Liên hệ
+        </span>
+      </div>
+    </div>
+    <!-- end title -->
+    <!-- map -->
+    <div class="col-12">
+      <div #gmap style="width:100%;height:350px"></div>
+    </div>
+    <!-- end map -->
+    <!-- content -->
+    <div class="content col-12">
+      <!-- <div class="wrap-title-text">
+        <span class="title-text">
+          Trụ sở chính
+        </span>
+      </div> -->
+      <!-- wrap-info -->
+      <div class="wrap-info">
+        <!-- <div class="name-hopital">
+          NHA KHOA NHÂN TÂM - Cấy ghép Implant & nha khoa thẩm mỹ
+        </div> -->
+        <!-- address -->
+        <!-- <div class="address item">
+          <span class="icon"><i class="fa fa-home"></i></span>
+          <span class="text">Địa chỉ: {{ address }}</span>
+        </div> -->
+        <!-- end address -->
+        <!-- phone -->
+        <!-- <div class="phone item">
+          <span class="icon"><i class="fa fa-phone"></i></span>
+          <span class="text">Điện thoại: {{ phone_number }}</span>
+        </div> -->
+        <!-- end phone -->
+        <!-- email -->
+        <!-- <div class="email item">
+          <span class="icon"><i class="fa fa-envelope-o"></i></span>
+          <span class="text">Email: {{ email }}</span>
+        </div> -->
+        <!-- end email -->
+      </div>
+      <!-- end wrap-info -->
+
+      <!-- wrap info-customer -->
+      <div class="info-customer">
+        <div class="text-note">
+          Vui lòng điền vào mẫu bên dưới: 
+        </div>
+        <form (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm">
+          <!-- field name -->
+          <div class="form-group row">
+
+            <!-- alert success -->
+            <div class="mt-5 offset-sm-3 col-12 col-sm-9 alert alert-success" role="alert" *ngIf="alertSuccess">
+                Liên hệ của bạn đã được gửi !!
+            </div>
+            <!-- end alert success -->
+
+            <label for="name" class="col-sm-3 col-form-label text-right">Họ tên</label>
+            <div class="col-sm-9">
+              <input 
+              type="text" 
+              class="form-control" 
+              id="name" 
+              name="name" 
+              placeholder="Họ tên"
+              ngModel
+              #name="ngModel"
+              required
+              [ngClass]="(name?.errors?.required && name?.touched) || (name?.errors?.required && formRegister.submitted)  ? 
+              'is-invalid' : 
+              ((name?.touched && !name?.errors?.required) || (name?.errors?.required && formRegister.submitted)  ? 
+              'is-valid' : ''
+              )"
+              >
+              <div class="invalid-feedback">
+                Vui lòng nhập họ tên.
+              </div>
+            </div>
+          </div>
+          <!-- end field name -->
+          <!-- field email -->
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
+            <div class="col-sm-9">
+              <input 
+              type="email" 
+              class="form-control" 
+              id="email" 
+              name="email" 
+              placeholder="Email"
+              ngModel
+              #email="ngModel"
+              required 
+              email
+              [ngClass]="(email?.errors?.required && email?.touched) || 
+              (email?.errors?.required && formRegister.submitted) ? 
+              'is-invalid' : 
+              ((!email?.errors?.email && email?.touched) || 
+              (!email?.errors?.email && formRegister.submitted ) ?
+                'is-valid' : (email?.touched || formRegister.submitted ? 'is-invalid' : '') )"
+              >
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(email?.errors?.required && email?.touched) || 
+              (email?.errors?.required && formRegister.submitted) ? 
+              'true' : false">
+                Vui lòng nhập Email.
+              </div>
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(!email?.errors?.required && email?.touched && email?.errors?.email) || 
+              (!email?.errors?.required && formRegister.submitted && email?.errors?.email) ? 
+              'true' : false">
+                Email không hợp lệ
+              </div>
+            </div>
+          </div>
+          <!-- end field email-->
+          <!-- field phone-->
+          <div class="form-group row">
+            <label for="phone" class="col-sm-3 col-form-label text-right">Di động</label>
+            <div class="col-sm-9">
+              <input 
+              type="text"
+              class="form-control" 
+              id="phone" 
+              name="phone"
+              placeholder="Số điện thoại"
+              ngModel
+              #phone="ngModel"
+              required
+              pattern="[0-9]{10,11}"
+              [ngClass]="(phone?.errors?.required && phone?.touched) || 
+              (phone?.errors?.required && formRegister.submitted ) ? 
+              'is-invalid' : 
+              ((phone?.valid && phone?.touched) || 
+              (phone?.valid && formRegister.submitted) ? 
+              'is-valid' : 
+              (phone?.touched || formRegister.submitted ? 'is-invalid' : '') )"
+              >
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(phone?.errors?.required && phone?.touched) || (phone?.errors?.required && formRegister.submitted) ? 
+              'true' : false">
+                Vui lòng nhập số điện thoại.
+              </div>
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(!phone?.errors?.required && phone?.touched && phone?.invalid) ||
+              (!phone?.errors?.required && formRegister.submitted && phone?.invalid) ? 
+              'true' : false">
+                Số diện thoại phải có 10-11 kí tự số.
+              </div>
+            </div>
+          </div>
+          <!-- end field phone -->
+          <!-- field adress-->
+          <div class="form-group row">
+            <label for="adress" class="col-sm-3 col-form-label text-right">Địa chỉ</label>
+            <div class="col-sm-9">
+              <input 
+              type="text" 
+              class="form-control" 
+              id="address" 
+              name="address"
+              placeholder="Địa chỉ"
+              ngModel
+              #address="ngModel"
+              [ngClass]="(address?.touched && address?.dirty) ? 
+              'is-valid' : ''"
+              >
+            </div>
+          </div>
+          <!-- end field adress -->
+          <!-- field title-->
+          <div class="form-group row">
+            <label for="title" class="col-sm-3 col-form-label text-right">Tiêu đề</label>
+            <div class="col-sm-9">
+              <input 
+              type="text" 
+              class="form-control" 
+              id="title" 
+              name="title" 
+              placeholder="Vui lòng nhập tiêu đề"
+              ngModel
+              #title="ngModel"
+              required
+              [ngClass]="(title?.errors?.required && title?.touched) || (title?.errors?.required && formRegister.submitted)  ? 
+              'is-invalid' : 
+              ((title?.touched && !title?.errors?.required) || (title?.errors?.required && formRegister.submitted)  ? 
+              'is-valid' : ''
+              )"
+              >
+              <div class="invalid-feedback">
+                Vui lòng tiêu đề.
+              </div>
+            </div>
+          </div>
+          <!-- end field title -->
+          <!-- field content-->
+          <div class="form-group row">
+            <label for="content" class="col-sm-3 col-form-label text-right">Nội dung liên hệ</label>
+            <div class="col-sm-9">
+              <textarea 
+              type="are" 
+              class="form-control"
+              id="content" 
+              rows="4"
+              name="content" 
+              placeholder="Nội dung muốn liên hệ"
+              ngModel
+              #content="ngModel"
+              required
+              [ngClass]="(content?.errors?.required && content?.touched) || (content?.errors?.required && formRegister.submitted)  ? 
+              'is-invalid' : 
+              ((content?.touched && !content?.errors?.required) || (content?.errors?.required && formRegister.submitted)  ? 
+              'is-valid' : ''
+              )"></textarea>
+              <div class="invalid-feedback">
+                  Vui lòng nhập nội dung cần liên hệ.
+              </div>
+            </div>
+          </div>
+          <!-- end field content -->
+          <!-- buton submit -->
+          <div class="form-group row">
+              <label for="" class="col-sm-3 col-form-label"></label>
+              <div class="col-sm-9">
+                  <button type="submit" class="btn btn-primary mb-2">Gửi liên hệ</button>
+              </div>
+          </div>
+          <!-- end buton submit -->
+        </form>
+      </div>
+      <!-- end wrap info-customer -->
+    </div>
+    <!-- end content -->
+  </div>
+</div>

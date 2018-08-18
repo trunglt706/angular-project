@@ -1,0 +1,8 @@
+/* custom slider */
+    /* bên file style.css */
+/* end custom slider */
+@media screen and (max-width: 768px) {
+    #slider{
+        display: none;
+    }
+}

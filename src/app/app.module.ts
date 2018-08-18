@@ -1,28 +1,26 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
-import { HomeModule } from './home/home.module';
-import {
-  FooterComponent,
-  HeaderComponent,
-  SharedModule
-} from './shared';
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
-
+import { HomeModule } from './home/home.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { AppComponent } from './app.component';
 @NgModule({
-  declarations: [AppComponent, FooterComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+  ],
   imports: [
     BrowserModule,
-    CoreModule,
-    SharedModule,
+    AppRoutingModule,
     HomeModule,
-    AuthModule,
-    AppRoutingModule
+    DashboardModule,
+    NgxPaginationModule,
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+
+  ]
 })
-export class AppModule {}
+export class AppModule { }

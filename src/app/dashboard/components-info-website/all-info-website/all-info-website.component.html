@@ -1,0 +1,155 @@
+<div class="row" id="body">
+  <!-- <div class="col-12 title mb-3">
+    Các thông tin website
+  </div> -->
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <h4>Các thông tin website</h4>
+      </div>
+      <div class="card-body">
+        <form class="form-horizontal" #formInfo="ngForm" (ngSubmit)="onSubmit(formInfo)">
+
+          <!-- tên website -->
+          <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Tên website:</label>
+            <div class="col-sm-10">
+              <input type="text" 
+              class="form-control"
+              [(ngModel)]="name_website"
+              name="name_website">
+              <span class="text-small text-gray help-block-none">Hãy đặt tên cho website của bạn.</span>
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <!-- Social Network -->
+          <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Liên kết mạng xã hội:</label>
+            <div class="col-sm-10">
+              <!-- facebook -->
+              <div class="form-group-material">
+                <input id="register-username"
+                 type="text" 
+                 name="registerUsername" 
+                 class="input-material" 
+                 (focus)="isFocusFacebook=true"
+                 name="facebook"
+                 [(ngModel)]="link_facebook">
+                <label 
+                for="register-username" 
+                class="label-material"
+                [ngClass]="isFocusFacebook || link_facebook ? 'active' : ''">Facebook</label>
+              </div>
+              <!-- youtube -->
+              <div class="form-group-material">
+                  <input id="register-username" 
+                  type="text" 
+                  name="registerUsername"
+                  class="input-material" 
+                  (focus)="isFocusYoutube=true"
+                  name="youtube"
+                  [(ngModel)]="link_youtube">
+                  <label 
+                  for="register-username" 
+                  class="label-material"
+                  [ngClass]="isFocusYoutube || link_youtube ? 'active' : ''">Youtube</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <!-- Logo -->
+          <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Logo:</label>
+            <div class="col-sm-10">
+              <div class="wrap-img">
+                <span class="item">
+                  <div class="icon"><i class="fa fa-picture-o"></i></div>
+                  <img [src]="linkDefaultImg" class="item-img">
+                  <input type="file" name="logo"
+                  value=""
+                  class="file"
+                  ngModel
+                  (change)="onChange($event)">
+                </span>
+              </div>
+              <div class="text-small text-gray help-block-none">Hãy lựa chọn logo để hiển thị trên trang giao diện của bạn.</div>
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <!-- email -->
+          <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Email:</label>
+            <div class="col-sm-10">
+              <input 
+              type="text" 
+              class="form-control"
+              name="email"
+
+               [(ngModel)]="email">
+               <!-- feedback -->
+              <!-- <div class="invalid-feedback">
+                  [ngClass]="((formInfo.controls.email?.errors?.email && (formInfo.controls.email?.touched || formInfo.submitted) ) ?
+                  'is-invalid' : '' )"
+                Email không hợp lệ
+              </div> -->
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <!-- address -->
+          <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Địa chỉ:</label>
+            <div class="col-sm-10">
+              <input 
+              type="text" 
+              class="form-control"
+              [(ngModel)]="address"
+              name="address">
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <!-- phone number -->
+          <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Số điện thoại:</label>
+            <div class="col-sm-10">
+              <input 
+              type="text" 
+              class="form-control"
+              #phone="ngModel"
+              name="phone_number"
+              pattern="[0-9]{10,11}"
+              [ngClass]="((!phone?.valid && phone?.touched) ? 
+              'is-invalid' : '')"
+              [(ngModel)]="phone_number">
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(!phone?.errors?.required && phone?.touched && phone?.invalid) ||
+              (!phone?.errors?.required && formInfo.submitted && phone?.invalid) ? 
+              'true' : false">
+                Số diện thoại phải có 10-11 kí tự số.
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group row">
+            <div class=" offset-2 col-10">
+              <button class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

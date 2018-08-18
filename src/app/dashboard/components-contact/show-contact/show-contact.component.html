@@ -1,0 +1,76 @@
+<div class="row" id="show-all">
+    <div class="col-12 title mb-3">
+      Tất cả liên hệ
+    </div>
+  
+    <!-- search -->
+    <div class="col-12 search">
+      <div class="form-inline my-2 my-lg-0 d-flex justify-content-end">
+        <input class="form-control mr-sm-2" [(ngModel)]="textSearch" type="search" placeholder="Nhập từ khóa tìm kiếm..." aria-label="Search">
+      </div>
+    </div>
+        
+    <div class="col-12 bg-light border rounded mt-2">
+      <table class="table table-hover">
+        <thead>
+          <tr class="text-dark">
+            <th scope="col">STT</th>
+
+            <!-- tiêu đề -->
+            <th scope="col" (click)="sort('title_contact')">Tiêu đề
+              <span class="sort_1" *ngIf="key == 'title_contact' && reverse"></span>
+              <span class="sort" *ngIf="key == 'title_contact' && !reverse"></span>
+            </th>
+
+            <!-- tên khách hàng -->
+            <th scope="col" (click)="sort('name_contact')">Tên
+              <span class="sort_1" *ngIf="key == 'name_contact' && reverse"></span>
+              <span class="sort" *ngIf="key == 'name_contact' && !reverse"></span>
+            </th>
+            <!-- số điện thoại -->
+            <th scope="col" (click)="sort('phone_contact')">SĐT
+              <span class="sort_1" *ngIf="key == 'phone_contact' && reverse"></span>
+              <span class="sort" *ngIf="key == 'phone_contact' && !reverse"></span>
+            </th>
+            <!-- email -->
+            <th scope="col" (click)="sort('email_contact')">Email
+              <span class="sort_1" *ngIf="key == 'email_contact' && reverse"></span>
+              <span class="sort" *ngIf="key == 'email_contact' && !reverse"></span>
+            </th>
+
+            <!-- thời gian -->
+            <th scope="col" (click)="sort('time_contact')">Thời gian
+              <span class="sort_1" *ngIf="key == 'time_contact' && reverse"></span>
+              <span class="sort" *ngIf="key == 'time_contact' && !reverse"></span>
+            </th>
+
+            <th class="text-center" scope="col">Xem</th>
+            <th class="text-center" scope="col">Xóa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of list_contact | orderBy: key : reverse | searchContact : textSearch | paginate: { itemsPerPage: perpages_number, currentPage: p }; let i=index;">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ contact?.title_contact }}</td>
+            <td>{{ contact?.name_contact }}</td>
+            <td>{{ contact?.phone_contact }}</td>
+            <td>{{ contact?.email_contact }}</td>
+            <td>{{ contact?.time_contact | date : ' h:mm a, dd/MM/yyyy' }}</td>
+
+            <td class="text-center"><a routerLink="/dashboard/see-contact/{{ contact.id_contact }}"><i class="pointer text-primary fa fa-eye"></i></a></td>
+            <td class="text-center"><i class="pointer text-danger fa fa-trash-o" (click)="delete(contact.id_contact)"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- pagination -->
+    <div class="mt-4 text-center w-100">
+      <pagination-controls
+      class="my-pagination"
+      (pageChange)="p = $event"
+      previousLabel=""
+      nextLabel=""
+      ></pagination-controls>
+    </div>
+  
+  </div>

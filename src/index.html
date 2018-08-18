@@ -1,17 +1,99 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Conduit</title>
+  <title>Client</title>
   <base href="/">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
-  <link href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="//demo.productionready.io/main.css">
-
+  <link rel="icon" type="image/x-icon" href="assets/img/icon.png">
+  <!-- end page facebook plugin -->
+  <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <!-- custom wow.js -->
+  
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root></app-root>
+<!--   <script lang="javascript">(function() {var pname = ( (document.title !='')? document.title : ((document.querySelector('h1') != null)? document.querySelector('h1').innerHTML : '') );var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async=1; ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=ef70875ea7ebf2f0ea5f93f1b5ecfb96&data=eyJzc29faWQiOjUzMjg4NzksImhhc2giOiIwOTUwYzBlODBlZGRhZWU4YWY0ZWFlMzUxMWMxZGUxZCJ9&pname='+pname;var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();</script> -->
 </body>
 </html>
+<!-- google-map-api -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCNkTJ_Dw5UL2Rf0reKcQ-5yzOQZX9v_g"
+  type="text/javascript"></script>
+<!-- end google-map-api -->
+
+<!-- page facebook plugin -->
+<!-- <script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.12';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script> -->
+
+
+<script>
+    var wow = new WOW(
+    {
+      boxClass:     'wow',      // animated element css class (default is wow)
+      animateClass: 'animated', // animation css class (default is animated)
+      offset:       0,          // distance to the element when triggering the animation (default is 0)
+      mobile:       true,       // trigger animations on mobile devices (default is true)
+      live:         true,       // act on asynchronously loaded content (default is true)
+      callback:     function(box) {
+        // the callback is fired every time an animation is started
+        // the argument that is passed in is the DOM node being animated
+      },
+      scrollContainer: null,    // optional scroll container selector, otherwise use window,
+      resetAnimation: true,     // reset animation on end (default is true)
+    }
+  );
+  wow.init();
+</script>
+<!-- event scroll-top -->
+<script>
+  $(window).scroll(function(){
+        if($(this).scrollTop()> 149){
+            $('.scroll-top').css('opacity',1);
+        }
+        else{
+            $('.scroll-top').css('opacity',0);
+        }
+    });
+    $('.scroll-top').click(function(){
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+    });
+</script>
+
+<!-- end event scroll-top -->
+<!-- end custom wow.js -->
+
+<!-- custom speed scrollbar -->
+<!-- <script type="text/javascript">
+  function wheel(event) {
+    var delta = 0;
+    if (event.wheelDelta) {(delta = event.wheelDelta / 120);}
+    else if (event.detail) {(delta = -event.detail / 3);}
+
+    handle(delta);
+    if (event.preventDefault) {(event.preventDefault());}
+    event.returnValue = false;
+  }
+
+  function handle(delta) {
+    var time = 800;
+    var distance = 300;
+
+    $('html, body').stop().animate({
+        scrollTop: $(window).scrollTop() - (distance * delta)
+    }, time );
+  }
+
+  if (window.addEventListener) {window.addEventListener('DOMMouseScroll', wheel, false);}
+  window.onmousewheel = document.onmousewheel = wheel;
+</script> -->
+<!-- end custom speed scrollbar -->
+
+
+<!-- sidebar dashboard -->

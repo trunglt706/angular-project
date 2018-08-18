@@ -1,0 +1,350 @@
+<div id="registered">
+  <div class="row">
+     <!-- title -->
+     <div class="col-12 title">
+      <div class="wrap">
+        <span class="icon">
+          <i class="fa fa-bookmark"></i>
+        </span>
+        <span class="text">
+          Đăng kí khám
+        </span>
+      </div>
+    </div>
+    <!-- end title -->
+    <div class="note col-12">
+      <div class="text-note">
+        Vui lòng điền vào mẫu bên dưới:
+      </div>
+    </div>
+
+    <!-- alert success -->
+    <div class="mt-5 offset-sm-2 col-12 col-sm-10 alert alert-success" role="alert" *ngIf="alertSuccess">
+        Đăng kí khám của bạn đã được gửi !!
+    </div>
+    <!-- end alert success -->
+
+    <!-- wrap-from -->
+    <div class="wrap-form col-12">
+      <form (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm">
+
+        
+        <!-- field name -->
+        <div class="form-group row">
+          <label for="name" class="col-12 col-sm-2 col-form-label text-right">Họ tên</label>
+          <div class="col-12 col-sm-10">
+            <input 
+            type="text" 
+            class="form-control" 
+            id="name" 
+            name="name" 
+            placeholder="Họ tên"
+            ngModel
+            #name="ngModel"
+            required
+            [ngClass]="(name?.errors?.required && name?.touched) || (name?.errors?.required && formRegister.submitted)  ? 
+            'is-invalid' : 
+            ((name?.touched && !name?.errors?.required) || (name?.errors?.required && formRegister.submitted)  ? 
+            'is-valid' : ''
+            )">
+            <div class="invalid-feedback">
+              Vui lòng nhập họ tên.
+            </div>
+          </div>
+        </div>
+        <!-- end field name -->
+
+        <!-- field email -->
+        <div class="form-group row">
+          <label for="email" class="col-12 col-sm-2 col-form-label text-right">Email</label>
+          <div class="col-12 col-sm-10">
+            <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            placeholder="Email"
+            name="email"
+            ngModel
+            email
+            #email="ngModel"
+            [ngClass]="(email?.errors?.required && email?.touched) || 
+            (email?.errors?.required && formRegister.submitted) ? 
+            'is-invalid' : 
+            ((!email?.errors?.email && email?.touched) || 
+            (!email?.errors?.email && formRegister.submitted ) ?
+            'is-valid' : (email?.touched || formRegister.submitted ? 'is-invalid' : '') )">
+
+            <!-- feedback -->
+            <div class="invalid-feedback" 
+            *ngIf="(email?.errors?.required && email?.touched) || 
+            (email?.errors?.required && formRegister.submitted) ? 
+            'true' : false">
+              Vui lòng nhập Email.
+            </div>
+            <!-- feedback -->
+            <div class="invalid-feedback" 
+            *ngIf="(!email?.errors?.required && email?.touched && email?.errors?.email) || 
+            (!email?.errors?.required && formRegister.submitted && email?.errors?.email) ? 
+            'true' : false">
+              Email không hợp lệ
+            </div>
+
+          </div>
+        </div>
+        <!-- end field email-->
+
+        <!-- field phone-->
+        <div class="form-group row">
+          <label for="phone" class="col-12 col-sm-2 col-form-label text-right">Di động</label>
+          <div class="col-12 col-sm-10">
+            <input 
+            type="text" 
+            class="form-control" 
+            id="phone" 
+            name="phone"
+            placeholder="Vui lòng nhập số điện thoại"
+            ngModel
+            #phone="ngModel"
+            required
+            pattern="[0-9]{10,11}"
+            [ngClass]="(phone?.errors?.required && phone?.touched) || 
+            (phone?.errors?.required && formRegister.submitted ) ? 
+            'is-invalid' : 
+            ((phone?.valid && phone?.touched) || 
+            (phone?.valid && formRegister.submitted) ? 
+            'is-valid' : 
+            (phone?.touched || formRegister.submitted ? 'is-invalid' : '') )" 
+            >
+            <!-- feedback -->
+            <div class="invalid-feedback" 
+            *ngIf="(phone?.errors?.required && phone?.touched) || (phone?.errors?.required && formRegister.submitted) ? 
+            'true' : false">
+              Vui lòng nhập số điện thoại.
+            </div>
+            <!-- feedback -->
+            <div class="invalid-feedback" 
+            *ngIf="(!phone?.errors?.required && phone?.touched && phone?.invalid) ||
+            (!phone?.errors?.required && formRegister.submitted && phone?.invalid) ? 
+            'true' : false">
+              Số diện thoại phải có 10-11 kí tự số.
+            </div>
+          </div>
+        </div>
+        <!-- end field phone -->
+
+        <!-- field address-->
+        <div class="form-group row">
+          <label for="adress" class="col-12 col-sm-2 col-form-label text-right">Địa chỉ</label>
+          <div class="col-12 col-sm-10">
+            <input 
+            type="text" 
+            class="form-control" 
+            id="adress" 
+            name="address"
+            placeholder="Vui lòng nhập địa chỉ"
+            ngModel
+            #address="ngModel"
+            [ngClass]="(address?.touched && address?.dirty) ?  'is-valid' : ''"
+            >
+          </div>
+        </div>
+        <!-- end field adress -->
+        <!-- field date-->
+        <div class="form-group row">
+          <label for="date" class="col-12 col-sm-2 col-form-label text-right">Ngày khám</label>
+          <div class="col-12 col-sm-10">
+            <input 
+            type="date" 
+            class="form-control" 
+            id="date" 
+            ngModel
+            #date="ngModel"
+            name="date"
+            required
+            [ngClass]="(date?.errors?.required && date?.touched) || (date?.errors?.required && formRegister.submitted)  ? 
+            'is-invalid' : 
+            ((date?.touched && !date?.errors?.required) || (date?.errors?.required && formRegister.submitted)  ? 
+            'is-valid' : ''
+            )">
+            <div class="invalid-feedback">
+              Vui lòng chọn ngày khám.
+            </div>
+          </div>
+        </div>
+        <!-- end field date -->
+        <!-- field time-->
+        <div class="form-group row">
+          <label for="time" class="col-12 col-sm-2 col-form-label text-right">Thời gian khám</label>
+          <div class="col-12 col-sm-10">
+            <input 
+            type="time" 
+            class="form-control" 
+            id="time" 
+            ngModel
+            #time="ngModel"
+            name="time"
+            required
+            [ngClass]="(time?.errors?.required && time?.touched) || (time?.errors?.required && formRegister.submitted)  ? 
+            'is-invalid' : 
+            ((time?.touched && !time?.errors?.required) || (time?.errors?.required && formRegister.submitted)  ? 
+            'is-valid' : ''
+            )">
+            <div class="invalid-feedback">
+              Vui lòng chọn thời gian tới khám.
+            </div>
+          </div>
+        </div>
+        <!-- end field time -->
+
+        <!-- field content-->
+        <div class="form-group row">
+          <label for="content" class="col-12 col-sm-2 col-form-label text-right">Nội dung </label>
+          <div class="col-12 col-sm-10">
+            <textarea 
+            type="are" 
+            class="form-control" 
+            id="content" 
+            rows="4"
+            name="content"
+            placeholder="Nhập nội dung bạn đến khám"
+            [(ngModel)] = "content"
+            ></textarea>
+          </div>
+        </div>
+        <!-- end field content -->
+        <!-- buton submit -->
+        <div class="form-group row">
+            <label for="" class="col-12 col-sm-2 col-form-label"></label>
+            <div class="col-12 col-sm-10">
+                <button type="submit" class="btn btn-primary mb-2">Gửi</button>
+            </div>
+        </div>
+        <!-- end buton submit -->
+      </form>
+    </div>
+    <!-- end wrap-from -->
+
+    <!-- calendar -->
+    <div class="col-12">
+      <div class="title-calendar">Lịch làm việc của các bác sĩ</div>
+      <table class="table table-bordered w-100">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center" scope="col"></th>
+
+            <th class="text-center" scope="col">S2</th>
+            <th class="text-center" scope="col">C2</th>
+            <th class="text-center" scope="col">T2</th>
+
+            <th class="text-center" scope="col">S3</th>
+            <th class="text-center" scope="col">C3</th>
+            <th class="text-center" scope="col">T3</th>
+
+            <th class="text-center" scope="col">S4</th>
+            <th class="text-center" scope="col">C4</th>
+            <th class="text-center" scope="col">T4</th>
+
+            <th class="text-center" scope="col">S5</th>
+            <th class="text-center" scope="col">C5</th>
+            <th class="text-center" scope="col">T5</th>
+
+            <th class="text-center" scope="col">S6</th>
+            <th class="text-center" scope="col">C6</th>
+            <th class="text-center" scope="col">T6</th>
+
+            <th class="text-center" scope="col">S7</th>
+            <th class="text-center" scope="col">C7</th>
+            <th class="text-center" scope="col">T7</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let calendarDoctor of working_calendar">
+            <th scope="row">{{ calendarDoctor?.name_user }}</th>
+            <!-- S2 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st2 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C2 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct2 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T2 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt2 == '1'" class="fa fa-check"></i>
+            </td>
+            
+            <!-- S3 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st3 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C3 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct3 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T3 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt3 == '1'" class="fa fa-check"></i>
+            </td>
+
+            <!-- S4 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st4 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C4 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct4 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T4 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt4 == '1'" class="fa fa-check"></i>
+            </td>
+
+            <!-- S5 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st5 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C5 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct5 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T5 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt5 == '1'" class="fa fa-check"></i>
+            </td>
+
+            <!-- S6 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st6 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C6 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct6 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T6 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt6 == '1'" class="fa fa-check"></i>
+            </td>
+
+            <!-- S7 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st7 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C7 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct7 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T7 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt7 == '1'" class="fa fa-check"></i>
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+
+  </div>
+</div>

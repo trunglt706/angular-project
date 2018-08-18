@@ -1,0 +1,111 @@
+<!-- Side Navbar -->
+<nav class="side-navbar">
+    <div class="side-navbar-wrapper">
+      <!-- Sidebar Header    -->
+      <div class="sidenav-header d-flex align-items-center justify-content-center">
+        <!-- User Info-->
+        <div class="sidenav-header-inner text-center"><img src="{{image_user}}" alt="{{name_user}}" class="img-fluid rounded-circle">
+          <h2 class="h5">{{name_user}}</h2>
+          <!-- <span>Web Developer</span> -->
+        </div>
+        <!-- Small Brand information, appears on minimized sidebar-->
+        <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
+          <img [src]="image_user" alt="{{name_user}}" class="img-fluid rounded-circle"></a>
+        </div>
+      </div>
+      <!-- Sidebar Navigation Menus-->
+      <div class="main-menu">
+        <h5 class="sidenav-heading">Tùy chọn</h5>
+        <ul id="side-main-menu" class="side-menu list-unstyled"> 
+
+           <!-- posts -->
+          <li>
+            <a href="#posts" aria-expanded="false" data-toggle="collapse"><i class="fa fa-eyedropper"></i>Bài viết</a>
+            <ul id="posts" class="collapse list-unstyled ">
+              <li routerLinkActive="active"><a routerLink="/dashboard/show-all-news">Tất cả bài viết</a></li>
+              <li routerLinkActive="active"><a routerLink="/dashboard/add-news">Viết bài mới</a></li>
+              <li routerLinkActive="active"><a routerLink="/dashboard/add-category-news">Chuyên mục</a></li>
+            </ul>
+          </li>
+         <!-- end post -->
+
+         <!-- services -->
+         <li>
+            <a href="#services" aria-expanded="false" data-toggle="collapse"><i class="fa fa-stethoscope"></i>Dịch vụ</a>
+            <ul id="services" class="collapse list-unstyled ">
+              <li routerLinkActive="active"><a routerLink="/dashboard/show-all-service">Tất cả bài viết</a></li>
+              <li routerLinkActive="active"><a routerLink="/dashboard/add-new-service">Viết bài mới</a></li>
+            </ul>
+          </li>
+         <!-- end services -->
+         
+        <!-- registration -->
+        <li *ngIf="!(type_user == '3')">
+          <a href="#order" aria-expanded="false" data-toggle="collapse"><i class="fa fa-stethoscope"></i>Các yêu cầu</a>
+          <ul id="order" class="collapse list-unstyled ">
+            <li routerLinkActive="active"><a routerLink="/dashboard/show-registration">Danh sách đặt lịch khám</a></li>
+            <li routerLinkActive="active"><a routerLink="/dashboard/show-contact">Danh sách liên hệ</a></li>
+          </ul>
+        </li>
+        <!-- end registration -->
+
+         <!-- account -->
+          <li *ngIf="type_user == '1'">
+              <a href="#account" aria-expanded="false" data-toggle="collapse"><i class="fa fa-stethoscope"></i>Tài khoản</a>
+              <ul id="account" class="collapse list-unstyled ">
+                <li routerLinkActive="active"><a routerLink="/dashboard/show-all-user">Tất cả tài khoản</a></li>
+                <li routerLinkActive="active"><a routerLink="/dashboard/register-user">Tạo tài khoản mới</a></li>
+              </ul>
+          </li>
+          <!-- info-website -->
+          <li *ngIf="type_user == '1'">
+              <a href="#info-website" aria-expanded="false" data-toggle="collapse"><i class="fa fa-info-circle"></i>Thông tin website</a>
+              <ul id="info-website" class="collapse list-unstyled ">
+                <li routerLinkActive="active"><a routerLink="/dashboard/introduce-website">Giới thiệu</a></li>
+                <li routerLinkActive="active"><a routerLink="/dashboard/all-info-website">Các thông tin</a></li>
+              </ul>
+          </li>
+
+          <!-- Hình ảnh -->
+          <li *ngIf="type_user == '1'">
+            <a href="#images" aria-expanded="false" data-toggle="collapse"><i class="fa fa-picture-o"></i>Hình ảnh</a>
+            <ul id="images" class="collapse list-unstyled ">
+              <li routerLinkActive="active"><a routerLink="/dashboard/slider">Slider</a></li>
+              <li routerLinkActive="active"><a routerLink="/dashboard/advertisement">Quảng cáo</a></li>
+            </ul>
+          </li>
+
+
+          <!--lịch khám -->
+          <li routerLinkActive="active" *ngIf="type_user == '3'">
+            <a routerLink="/dashboard/update-working-calendar"><i class="fa fa-calendar"></i>Cập nhật lịch khám</a>
+          </li>
+
+          <!-- lịch khám của các bác sĩ -->
+          <li routerLinkActive="active"><a routerLink="/dashboard/show-all-working-calendar-doctors"><i class="fa fa-bookmark-o"></i>Lịch khám phòng nha</a></li>
+         
+          <!-- Thông tin tài khoản -->
+          <li>
+            <a href="#myaccount" aria-expanded="false" data-toggle="collapse"><i class="fa fa-picture-o"></i>Tài khoản của tôi</a>
+            <ul id="myaccount" class="collapse list-unstyled ">
+              <li routerLinkActive="active"><a routerLink="/dashboard/my-account-info">Thông tin</a></li>
+              <li routerLinkActive="active"><a routerLink="/dashboard/password-changing">Đổi mật khẩu</a></li>
+            </ul>
+          </li>
+            
+          <!-- <li>
+            <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
+            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+              <li><a href="#">Page</a></li>
+              <li><a href="#">Page</a></li>
+              <li><a href="#">Page</a></li>
+            </ul>
+          </li> -->
+          <!-- <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page                             </a></li>
+          <li> <a href="#"> <i class="icon-mail"></i>Demo
+            <div class="badge badge-warning">6 New</div></a>
+          </li>  -->
+        </ul>
+      </div>
+    </div>
+  </nav>

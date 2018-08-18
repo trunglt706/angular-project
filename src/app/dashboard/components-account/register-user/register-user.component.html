@@ -1,0 +1,431 @@
+<div id="register">
+    <div class="row">
+      <!-- title -->
+      <div class="col-12 title mb-3">
+        Tạo mới tài khoản
+      </div>
+      <!-- end title -->
+
+      <!-- alert success -->
+      <div class="col-12 alert alert-success" role="alert" *ngIf="alertSuccess">
+        Đăng kí tài khoản thành công.
+      </div>
+      <!-- end alert success -->
+
+      <!-- alert fail -->
+      <div class="offset-sm-3 col-12 col-sm-9 alert alert-danger" role="alert" *ngIf="alertDanger">
+          Tài khoản đã tồn tại.
+        </div>
+        <!-- end alert fail -->
+      
+      <!-- wrap form -->
+      <div class="col-12">
+        <form (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm" class="form form-horizontal card">
+          <!-- field name -->
+          <div class="form-group row">
+            <label for="name" class="col-12 col-sm-3 col-form-label">Họ tên</label>
+            <div class="col-12 col-sm-9">
+              <input 
+              type="text" 
+              class="form-control" 
+              id="name" 
+              name="name" 
+              placeholder="Họ tên"
+              ngModel
+              #name="ngModel"
+              required
+              [ngClass]="(name?.errors?.required && name?.touched) || (name?.errors?.required && formRegister.submitted)  ? 
+              'is-invalid' : 
+              ((name?.touched && !name?.errors?.required) || (name?.errors?.required && formRegister.submitted)  ? 
+              'is-valid' : ''
+              )"
+              >
+              <div class="invalid-feedback">
+                Vui lòng nhập họ tên.
+              </div>
+            </div>
+          </div>
+          <!-- end field name -->
+          <!-- field account -->
+          <div class="form-group row">
+            <label for="account" class="col-12 col-sm-3 col-form-label">Tên đăng nhập</label>
+            <div class="col-12 col-sm-9">
+              <!-- kiểm tra tên tài khoản đã nhập hay chưa, nếu nhập rồi kiểm tra xem đúng định dạng hay không -->
+              <input 
+              type="text" 
+              class="form-control" 
+              id="account"
+              name="account" 
+              placeholder="Tài khoản"
+              ngModel
+              #account="ngModel"
+              required
+              (ngModelChange)="existedAccount = false"
+              pattern="[a-zA-Z0-9]{6,15}"
+              [ngClass]="(account?.errors?.required && account?.touched) 
+              || (account?.errors?.required && formRegister.submitted) || (existedAccount)? 
+              'is-invalid' : 
+              ((account?.valid && account?.touched) 
+              || (account?.valid  && formRegister.submitted) ? 
+              'is-valid' : (account?.touched ? 'is-invalid' : '') )"
+              >
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(account?.errors?.required && account?.touched) 
+              || (account?.errors?.required && formRegister.submitted) ? 
+              'true' : false">
+                Vui lòng nhập tài khoản.
+              </div>
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(!account?.errors?.required && account?.touched && account?.invalid) || 
+              (!account?.errors?.required && formRegister.submitted && account?.invalid) ? 
+              'true' : false">
+                Tên tài khoản phải có 6-15 kí tự.
+              </div>
+              <!-- feedback -->
+              <div class="invalid-feedback"
+              *ngIf="existedAccount && account?.valid ">
+                Tài khoản đã tồn tại
+              </div>
+            </div>
+          </div>
+          <!-- end field account -->
+
+          <!-- field password -->
+          <div class="form-group row">
+            <label for="password" class=" col-12 col-sm-3 col-form-label">Mật khẩu</label>
+            <div class="col-12 col-sm-9">
+              <input 
+              type="password" 
+              class="form-control" 
+              id="password" 
+              name="password"
+              placeholder="Mật khẩu"
+              ngModel
+              #password="ngModel"
+              required
+              pattern="[a-zA-Z0-9]{8,16}"
+              [ngClass]="(password?.errors?.required && password?.touched) || 
+              (password?.errors?.required && formRegister.submitted) ? 
+              'is-invalid' : 
+              ((password?.valid && password?.touched) || 
+              (password?.valid && formRegister.submitted) ? 
+              'is-valid' : (password?.touched ? 'is-invalid' : '') )"
+              >
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(password?.errors?.required && password?.touched) || 
+              (password?.errors?.required && formRegister.submitted) ? 
+              'true' : false">
+                Vui lòng nhập mật khẩu
+              </div>
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(!password?.errors?.required && password?.touched && password?.invalid) || 
+              (!password?.errors?.required && formRegister.submitted && password?.invalid) ? 
+              'true' : false">
+                Mật khẩu phải có 8-16 kí tự.
+              </div>
+            </div>
+          </div>
+          <!-- end field password -->
+
+          <!-- field comfirm password -->
+          <div class="form-group row">
+            <label for="comfirm-password" class="col-12 col-sm-3 col-form-label">Xác nhận mật khẩu</label>
+            <div class="col-12 col-sm-9">
+              <input 
+              type="password" 
+              class="form-control" 
+              id="comfirm-password" 
+              name="comfirm-password"
+              placeholder="Xác nhận mật khẩu"
+              ngModel
+              #comfirmPassword="ngModel"
+              required
+              pattern="[a-zA-Z0-9]{8,16}"
+              [ngClass]="(comfirmPassword?.errors?.required && comfirmPassword?.touched ) || 
+              (comfirmPassword?.errors?.required && formRegister.submitted ) ? 
+              'is-invalid' : 
+              ((comfirmPassword?.touched && (comfirmPassword.value == password.value)) || 
+              (formRegister.submitted && (comfirmPassword.value == password.value))
+              ? 'is-valid' : 
+              ( comfirmPassword?.touched || formRegister.submitted ? 'is-invalid' : '') )"
+              >
+              <!-- feedback -->
+              <div class="invalid-feedback">
+                Mật khẩu không đúng.
+              </div>
+            </div>
+          </div>
+          <!-- end field comfirm password -->
+
+          <!-- field phone -->
+          <div class="form-group row">
+            <label for="phone" class="col-12 col-sm-3 col-form-label">Số điện thoại</label>
+            <div class="col-12 col-sm-9">
+              <input 
+              type="text"
+              class="form-control" 
+              id="phone" 
+              name="phone"
+              placeholder="Số điện thoại"
+              ngModel
+              #phone="ngModel"
+              required
+              pattern="[0-9]{10,11}"
+              [ngClass]="(phone?.errors?.required && phone?.touched) || 
+              (phone?.errors?.required && formRegister.submitted ) ? 
+              'is-invalid' : 
+              ((phone?.valid && phone?.touched) || 
+              (phone?.valid && formRegister.submitted) ? 
+              'is-valid' : 
+              (phone?.touched || formRegister.submitted ? 'is-invalid' : '') )"
+              >
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(phone?.errors?.required && phone?.touched) || (phone?.errors?.required && formRegister.submitted) ? 
+              'true' : false">
+                Vui lòng nhập số điện thoại.
+              </div>
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(!phone?.errors?.required && phone?.touched && phone?.invalid) ||
+              (!phone?.errors?.required && formRegister.submitted && phone?.invalid) ? 
+              'true' : false">
+                Số diện thoại phải có 10-11 kí tự số.
+              </div>
+            </div>
+          </div>
+          <!-- end field phone -->
+
+          <!-- field email -->
+          <div class="form-group row">
+            <label for="email" class="col-12 col-sm-3 col-form-label">Email</label>
+            <div class="col-12 col-sm-9">
+              <input 
+              type="email" 
+              class="form-control" 
+              id="email" 
+              name="email" 
+              placeholder="Email"
+              ngModel
+              #email="ngModel"
+              required 
+              email
+              [ngClass]="(email?.errors?.required && email?.touched) || 
+              (email?.errors?.required && formRegister.submitted) ? 
+              'is-invalid' : 
+              ((!email?.errors?.email && email?.touched) || 
+              (!email?.errors?.email && formRegister.submitted ) ?
+               'is-valid' : (email?.touched || formRegister.submitted ? 'is-invalid' : '') )"
+              >
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(email?.errors?.required && email?.touched) || 
+              (email?.errors?.required && formRegister.submitted) ? 
+              'true' : false">
+                Vui lòng nhập Email.
+              </div>
+              <!-- feedback -->
+              <div class="invalid-feedback" 
+              *ngIf="(!email?.errors?.required && email?.touched && email?.errors?.email) || 
+              (!email?.errors?.required && formRegister.submitted && email?.errors?.email) ? 
+              'true' : false">
+                Email không hợp lệ
+              </div>
+            </div>
+          </div>
+          <!-- end field email -->
+
+          <!-- field address -->
+          <div class="form-group row">
+            <label for="address" class="col-12 col-sm-3 col-form-label">Địa chỉ</label>
+            <div class="col-12 col-sm-9">
+              <input 
+              type="text" 
+              class="form-control" 
+              id="address" 
+              name="address"
+              placeholder="Địa chỉ"
+              ngModel
+              #address="ngModel"
+              [ngClass]="(address?.touched && address?.dirty) ? 
+              'is-valid' : ''"
+              >
+            </div>
+          </div>
+          <!-- end field address -->
+
+          <!-- account type -->
+          <div class="form-group row">
+            <label for="address" class="col-12 col-sm-3 col-form-label">Loại tài khoản: </label>
+            <div class="col-12 col-sm-9" >
+
+              <!-- Khách -->
+              <span class="item d-inline-block ml-3 custom-control custom-radio">
+                  <input (change)="changTypeAccount(4)" class="form-check-input custom-control-input" [(ngModel)]="type_account" type="radio" name="user" id="user"  value="4" checked>
+                  <label class="form-check-label custom-control-label"  for="user">Khách</label>
+              </span>
+
+              <!-- Bác sĩ -->
+              <span class="item d-inline-block ml-5 custom-control custom-radio">
+                  <input (change)="changTypeAccount(3)" class="form-check-input custom-control-input" [(ngModel)]="type_account" type="radio" name="user" id="doctor"  value="3">
+                  <label class="form-check-label custom-control-label" for="doctor">Bác sĩ</label>
+             </span>
+
+               <!-- Lễ tân -->
+              <span class="item d-inline-block ml-5 custom-control custom-radio">
+                <input (change)="changTypeAccount(2)" class="form-check-input custom-control-input" [(ngModel)]="type_account" type="radio" name="user" id="letan"  value="2">
+                <label class="form-check-label custom-control-label" for="letan">Lễ tân</label>
+              </span>
+
+              <!-- Quản lý -->
+              <span class="item d-inline-block ml-5 custom-control custom-radio">
+                  <input (change)="changTypeAccount(1)" class="form-check-input custom-control-input" [(ngModel)]="type_account" type="radio" name="user" id="manager"  value="1" checked>
+                  <label class="form-check-label custom-control-label" for="manager">Quản lý</label>
+              </span>
+
+            </div>
+          </div>
+
+
+          <!-- option doctor -->
+          <div *ngIf="formRegister.value.user == 3">
+            <div class="line"></div>
+            <!-- hình ảnh đại diện -->
+            <div class="form-group ">
+              <div class="row">
+
+                <div class="col-12 offset-sm-3 col-sm-9 text-center mb-3">
+                  <img [src]="linkDefaultImg" class="img-default" width="40%">
+                </div>
+
+                <label for="file" class="col-12 col-sm-3 col-form-label">Ảnh đại diện</label>
+
+                <div class="custom-file col-12 col-sm-9">
+                  <input type="file" 
+                  (change)="onChange($event)"
+                  class="custom-file-input" 
+                  id="customFile"
+                  name="file"
+                  ngModel
+                  #file="ngModel">
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+
+                  <div class="form-control invisible"
+                  [ngClass]="isType ? '' : 'is-invalid'"
+                  ></div>
+                  <!-- thông báo lỗi -->
+                  <div class="invalid-feedback">
+                    {{ textErroFile }}
+                  </div>
+
+                </div>
+              </div>
+                
+            </div>
+            <!-- học vấn -->
+            <div class="form-group row">
+                <label for="education" class="col-12 col-sm-3 col-form-label">Học Vấn</label>
+                <div class="col-12 col-sm-9">
+                  <input 
+                  type="text" 
+                  class="form-control" 
+                  id="education" 
+                  name="education"
+                  placeholder="Vui lòng nhập học vấn"
+                  ngModel
+                  #education="ngModel">
+                </div>
+            </div>
+
+              <!-- Vị trí -->
+              <div class="form-group row">
+                  <label for="position" class="col-12 col-sm-3 col-form-label">Vị trí</label>
+                  <div class="col-12 col-sm-9">
+                      <select class="form-control" id="position" name="position" [ngModel]="'1'">
+                          <option value="1">Trám răng</option>
+                          <option value="2">Cạo vôi răng</option>
+                          <option value="3">Nhổ răng</option>
+                      </select>
+                  </div>
+              </div>
+
+              <!-- hiển thị -->
+              <div class="form-group row">
+                <label for="position" class="col-12 col-sm-3 col-form-label">
+                  Hiển thị ra ngoài trang chủ
+                </label>
+                <div class="col-12 col-sm-9">
+                    <span class="item d-inline-block ml-3 custom-control custom-radio">
+                        <input class="form-check-input custom-control-input" [(ngModel)]="show" type="radio" name="show" id="show1"  value="1" checked>
+                        <label class="form-check-label custom-control-label"  for="show1">Có</label>
+                    </span>
+
+                    <span class="item d-inline-block ml-3 custom-control custom-radio">
+                        <input class="form-check-input custom-control-input" [(ngModel)]="show" type="radio" name="show" id="show2"  value="0" checked>
+                        <label class="form-check-label custom-control-label"  for="show2">Không</label>
+                    </span>
+                </div>
+            </div>
+          </div>
+          <!-- end option doctor -->
+
+          <!-- option manager and lễ tân -->
+          <div *ngIf="formRegister.value.user == 2 || formRegister.value.user == 1">
+            <div class="line"></div>
+            <!-- hình ảnh đại diện -->
+            <div class="form-group ">
+                <div class="row">
+  
+                  <div class="col-12 offset-sm-3 col-sm-9 text-center mb-3">
+                    <img [src]="linkDefaultImg" class="img-default" width="40%">
+                  </div>
+  
+                  <label for="file" class="col-12 col-sm-3 col-form-label">Ảnh đại diện</label>
+  
+                  <div class="custom-file col-12 col-sm-9">
+                    <input type="file" 
+                    (change)="onChange($event)"
+                    class="custom-file-input" 
+                    id="customFile"
+                    name="file"
+                    ngModel
+                    #file="ngModel">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+  
+                    <div class="form-control invisible"
+                    [ngClass]="isType ? '' : 'is-invalid'"
+                    ></div>
+                    <!-- thông báo lỗi -->
+                    <div class="invalid-feedback">
+                      {{ textErroFile }}
+                    </div>
+  
+                  </div>
+                </div>
+                  
+              </div>
+          </div>
+
+
+          <div class="form-group row">
+              <label for="inputPassword3" class="col-12 col-sm-3 col-form-label"></label>
+              <div class="col-12 col-sm-9">
+                <button type="submit" class="btn btn-primary">Đăng kí</button>
+          </div>
+
+          </div>
+
+        </form>
+        
+        
+       
+
+
+        
+      </div>
+     </div>
+  </div>

@@ -1,0 +1,82 @@
+<div id="login">
+  <div class="row">
+    <!-- title -->
+    <div class="col-12 title">
+      <div class="wrap">
+        <span class="icon">
+          <i class="fa fa-bookmark"></i>
+        </span>
+        <span class="text">
+          Đăng nhập
+        </span>
+      </div>
+    </div>
+    <!-- end title -->
+    <!-- alert success -->
+    <div class="offset-sm-2 col-12 col-sm-10 alert alert-danger" role="alert" *ngIf="isSuccess">
+      Tài khoản hoặc mật khẩu không đúng
+    </div>
+    <!-- end alert success -->
+
+    <div class="wrap-form col-12">
+      <form #formLogin="ngForm" (ngSubmit)="onSubmit(formLogin)" autocomplete="off" novalidate >
+        <!-- field account -->
+        <div class="form-group row">
+          <label for="account" class="text-right col-12 col-sm-2 col-form-label">Tài khoản</label>
+          <div class="col-12 col-sm-10">
+            <input type="text"
+            class="form-control"
+            id="account" 
+            placeholder="Tài khoản"
+            name="account" 
+            ngModel 
+            #account="ngModel" 
+            required
+            [ngClass]="(account?.errors?.required && formLogin.submitted) || (isSuccess)  ? 
+              'is-invalid' : '' "
+            >
+            <div class="invalid-feedback" *ngIf="(account?.errors?.required && formLogin.submitted)">
+              Vui lòng nhập tài khoản
+            </div>
+          </div>
+        </div>
+        <!-- end field account -->
+        <!-- field password -->
+        <div class="form-group row">
+          <label for="password" class="text-right col-12 col-sm-2 col-form-label">Mật khẩu</label>
+          <div class="col-12 col-sm-10">
+            <input type="password" 
+            class="form-control" 
+            id="password" 
+            placeholder="Mật khẩu"
+            name="password" 
+            ngModel 
+            #password="ngModel" 
+            required
+            [ngClass]="(password?.errors?.required && formLogin.submitted) || (isSuccess)  ? 
+              'is-invalid' : '' "
+            >
+            <div class="invalid-feedback" *ngIf="(password?.errors?.required && formLogin.submitted)">
+              Vui lòng mật khẩu
+            </div>
+          </div>
+        </div>
+        <!-- end field password -->
+        <div class="register-new form-group row">
+            <div class="col-sm-2"></div>
+            <div class="wrap-text col-sm-10">
+              <a class="text-primary" routerLink="/register">&nbsp;Đăng kí tài khoản mới</a>
+            </div>
+          </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-12 text-right col-sm-2 col-form-label"></label>
+            
+            <div class="col-12 col-sm-10">
+              <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            </div>
+          </div>
+      </form>
+      
+    </div>
+  </div>
+</div>

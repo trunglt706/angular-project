@@ -1,0 +1,189 @@
+<div class="row" id="show-all">
+  <div class="col-12 title mb-3">
+    Chi tiết đăng kí khám
+  </div>
+  <!-- alert success -->
+  <div class="my-2 col-12 alert alert-success" role="alert" *ngIf="alertSuccess">
+      Cập nhật thành công
+  </div>
+  <!-- end alert success -->
+  <div class="col-12">
+     
+      <form (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm" class="row">
+
+        <div class="col-lg-6">
+            <div class="card">
+              <!-- title -->
+              <div class="card-header d-flex align-items-center">
+                <h4>Thông tin khách hàng</h4>
+              </div>
+              <div class="card-body">
+                
+                <!-- tên -->
+                <div class="form-group">
+                  <label>Tên </label>
+                  <input 
+                  type="text" 
+                  class="form-control" 
+                  id="name" 
+                  name="name" 
+                  placeholder="Họ tên"
+                  [ngModel]="infoRegistration?.name_customer"
+                  ngModel
+                  #name="ngModel"
+                  required
+                  [ngClass]="(name?.errors?.required && name?.touched) || (name?.errors?.required && formRegister.submitted)  ? 
+                  'is-invalid' : 
+                  ((name?.touched && !name?.errors?.required) || (name?.errors?.required && formRegister.submitted)  ? 
+                  'is-valid' : ''
+                  )">
+                </div>
+
+                <!-- sdt -->
+                <div class="form-group">
+                  <label>Số điện thoại </label>
+                  <input 
+                  type="text" 
+                  class="form-control" 
+                  id="phone" 
+                  name="phone"
+                  placeholder="Vui lòng nhập số điện thoại"
+                  [ngModel]="infoRegistration?.phone_customer"
+                  ngModel
+                  #phone="ngModel"
+                  required
+                  pattern="[0-9]{10,11}"
+                  [ngClass]="(phone?.errors?.required && phone?.touched) || 
+                  (phone?.errors?.required && formRegister.submitted ) ? 
+                  'is-invalid' : 
+                  ((phone?.valid && phone?.touched) || 
+                  (phone?.valid && formRegister.submitted) ? 
+                  'is-valid' : 
+                  (phone?.touched || formRegister.submitted ? 'is-invalid' : '') )" 
+                  >
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                  <label>Email </label>
+                  <input 
+                  type="email" 
+                  class="form-control" 
+                  id="email" 
+                  placeholder="Email"
+                  name="email"
+                  [ngModel]="infoRegistration?.email_customer"
+                  ngModel
+                  email
+                  #email="ngModel"
+                  [ngClass]="(email?.errors?.required && email?.touched) || 
+                  (email?.errors?.required && formRegister.submitted) ? 
+                  'is-invalid' : 
+                  ((!email?.errors?.email && email?.touched) || 
+                  (!email?.errors?.email && formRegister.submitted ) ?
+                  'is-valid' : (email?.touched || formRegister.submitted ? 'is-invalid' : '') )">
+                </div>
+
+                <!-- địa chỉ -->
+                <div class="form-group">
+                  <label>Địa chỉ </label>
+                  <input 
+                  type="text" 
+                  class="form-control" 
+                  id="address" 
+                  name="address"
+                  placeholder="Vui lòng nhập địa chỉ"
+                  [ngModel]="infoRegistration?.address_customer"
+                  ngModel
+                  #address="ngModel"
+                  [ngClass]="(address?.touched && address?.dirty) ?  'is-valid' : ''"
+                  >
+                </div>
+
+              </div>
+            </div>
+        </div>
+
+        <!-- các thông tin khác -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header d-flex align-items-center">
+              <h4>Các thông tin khám</h4>
+            </div>
+            <div class="card-body">
+
+               <!-- Thời khám khám -->
+               <div class="form-group">
+                <label>Thời khám khám </label>
+                <input 
+                type="time" 
+                class="form-control" 
+                id="time" 
+                [ngModel]="infoRegistration?.time_customer"
+                ngModel
+                #time="ngModel"
+                name="time"
+                required
+                [ngClass]="(time?.errors?.required && time?.touched) || (time?.errors?.required && formRegister.submitted)  ? 
+                'is-invalid' : 
+                ((time?.touched && !time?.errors?.required) || (time?.errors?.required && formRegister.submitted)  ? 
+                'is-valid' : ''
+                )">
+              </div>
+
+              <!-- Ngày khám -->
+              <div class="form-group">
+                <label>Ngày khám </label>
+                <input 
+                type="date" 
+                class="form-control" 
+                id="date" 
+                [ngModel]="infoRegistration?.date_customer"
+                ngModel
+                #date="ngModel"
+                name="date"
+                required
+                [ngClass]="(date?.errors?.required && date?.touched) || (date?.errors?.required && formRegister.submitted)  ? 
+                'is-invalid' : 
+                ((date?.touched && !date?.errors?.required) || (date?.errors?.required && formRegister.submitted)  ? 
+                'is-valid' : ''
+                )">
+              </div>
+
+              <!-- bác sĩ -->
+              <div class="form-group">
+                <label>Bác sĩ khám </label>
+                <select 
+                class="form-control"
+                [(ngModel)]="doctorOption" 
+                name="doctor">
+                  <ng-container *ngFor="let doctor of listDoctor">
+                      <option value="{{doctor.id_account}}">{{doctor.name_user}}</option>
+                  </ng-container>
+                  
+                </select>
+              </div>
+
+              <div class="form-group">
+                  <label>Nội dung </label>
+                  <textarea 
+                  name="content"
+                  [ngModel]="content" 
+                  class="form-control" 
+                  cols="30" 
+                  rows="4">{{content}}</textarea>
+                </div>
+
+              <!-- cập nhật -->
+              <div class="form-group row">       
+                <div class="col-sm-10 offset-sm-2">
+                  <input type="submit" value="Cập nhật" class="btn btn-primary">
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>
+</div>

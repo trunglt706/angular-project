@@ -1,0 +1,193 @@
+<div class="row" id="add-news">
+  <div class="col-12 title mb-3">
+    Thêm bài viết
+  </div>
+  <form (ngSubmit)="onSubmit(formAddNews)" #formAddNews="ngForm" class="col-12" enctype="multipart/form-data">
+    <div class="row">
+      <!-- left -->
+      <div class="col-8 left">
+        <div class="title-new">
+          <!-- title news -->
+          <div class="form-group">
+            <input type="text" 
+            class="form-control" 
+            placeholder="Nhập tiêu đề tin tức"
+            name="title"
+            #title="ngModel"
+            ngModel
+            required
+            [ngClass]="(title?.errors?.required && title?.touched) || (title?.errors?.required && formAddNews.submitted)  ? 
+            'is-invalid' : 
+            ((title?.touched && !title?.errors?.required) || (title?.errors?.required && formAddNews.submitted)  ? 
+            'is-valid' : ''
+            )"
+            >
+            <div class="invalid-feedback">
+              Vui lòng nhập tiêu đề !!
+            </div>
+          </div>
+          <!-- excerpt news -->
+          <div class="form-group">
+              <textarea type="text" 
+              class="form-control" 
+              placeholder="Mô tả ngắn"
+              name="excerpt"
+              #excerpt="ngModel"
+              ngModel
+              required
+              [ngClass]="(excerpt?.errors?.required && excerpt?.touched) || (excerpt?.errors?.required && formAddNews.submitted)  ? 
+              'is-invalid' : 
+              ((excerpt?.touched && !excerpt?.errors?.required) || (excerpt?.errors?.required && formAddNews.submitted)  ? 
+              'is-valid' : ''
+              )"
+              ></textarea>
+              <div class="invalid-feedback">
+                Vui lòng nhập mô tả ngắn !!
+              </div>
+            </div>
+          <!-- editor -->
+          <div class="wrap-editor">
+            <div [froalaEditor]="options" 
+            name="textNews"
+            class="form-control p-0" 
+            ngModel 
+            required
+            #textNews="ngModel"
+            [ngClass]="(textNews?.errors?.required && textNews?.touched) || (textNews?.errors?.required && formAddNews.submitted)  ? 
+            'is-invalid' : 
+            ((textNews?.touched && !textNews?.errors?.required) || (textNews?.errors?.required && formAddNews.submitted)  ? 
+            'is-valid' : ''
+            )"
+            ></div>
+            <div class="invalid-feedback">
+              Vui lòng nhập nội dung
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- right -->
+      <div class="col-4 right">
+
+        <!-- Ảnh đại diện -->
+        <div id="new-updates" class="card updates recent-updated">
+          <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#image-post" aria-expanded="true" aria-controls="updates-box">Ảnh đại diện</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#image-post" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+          </div>
+          <div id="image-post" role="tabpanel" class="collapse show">
+
+            <!-- item -->
+            <div class="item d-flex text-small flex-wrap">
+              <input type="file" 
+              class="form-control-file" 
+              id="exampleFormControlFile1"
+              name="fileImg"
+              (change)="onChange($event)"
+              ngModel
+              #fileImg="ngModel"
+              >
+              <div class="form-control invisible"
+              [ngClass]="isType ? '' : 'is-invalid'"
+              ></div>
+              <!-- thông báo lỗi -->
+              <div class="invalid-feedback">
+                {{ textErroFile }}
+              </div>
+            </div>
+            <!-- end item -->
+          </div>
+        </div>
+
+        <!-- Chuyên mục -->
+        <div id="new-updates" class="card updates recent-updated">
+          <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#category" aria-expanded="true" aria-controls="updates-box">Chuyên mục</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#category" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+          </div>
+          <div id="category" role="tabpanel" class="collapse show">
+            <!-- item -->
+            <div class="item text-small">
+              <!--  -->
+              <div class="form-group" *ngFor="let category of listCategoryNews">
+                  <input type="radio" 
+                  name="category" 
+                  required 
+                  ngModel 
+                  value="{{ category.id_category }}" 
+                  id="{{ category.id_category }}">
+                  <label 
+                  class="text-bold ml-2" 
+                  for="{{ category.id_category }}">
+                  {{ category.name_category }}
+                  </label>
+              </div>
+            </div> 
+            <!-- item -->
+            <div class="item d-flex text-small flex-wrap">
+              <div class="text edit" (click)="toggleShowAddNewCaTeGoRy()">Thêm chuyên mục</div>
+              <!-- box-option -->
+              <form #formCategoryNews="ngForm" (ngSubmit)="addCategoryNews(formCategoryNews)">
+                <div id="box-option" role="tabpanel" class="wrap-box-option d-flex mt-2" [@slideInOut]="animationCategory">
+                  <input type="text" 
+                  class="form-control" 
+                  placeholder="Tên chuyên mục"
+                  ngModel
+                  name="nameCategory"
+                  #nameCategory="ngModel"
+                  required
+                  [ngClass]="(nameCategory?.errors?.required && nameCategory?.touched) || (nameCategory?.errors?.required && formCategoryNews.submitted) || (isErrAdd)  ? 
+                  'is-invalid' : 
+                  ((nameCategory?.touched && !nameCategory?.errors?.required) || (nameCategory?.errors?.required && formCategoryNews.submitted)  ? 
+                  'is-valid' : ''
+                  )">
+                  <button type="submit"  class="ml-1 btn btn-default p-1">Ok</button>
+                  <div class="cancel d-flex align-items-center ml-1" (click)="animationCategory='out'">Hủy</div>
+                </div>
+              </form>
+            </div>
+            <!-- end item -->
+          </div>
+
+          <!-- thông báo chưa chọn -->
+          <div class="col-12 err" *ngIf="(formAddNews?.controls?.category?.errors?.required && formAddNews.submitted)">
+            Vui lòng chọn loại tin tức
+          </div>
+          
+        </div>
+        
+        <!-- Đăng Bài Viết  -->
+        <div id="new-updates" class="card updates recent-updated">
+          <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Đăng bài viết</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+          </div>
+          <div id="updates-box" role="tabpanel" class="collapse show">
+            <!-- item -->
+            <div class="item d-flex text-small flex-wrap">
+              <div class="icon"><i class="fa fa-key"></i></div>
+              <div class="text">Trạng thái: <span class="text-bold">
+                {{ chosenOption == 0 ? 'Chờ xét duyệt' : 'Đã xét duyệt' }}
+                </span> <a class="edit" (click)="toggleShowDiv()" *ngIf="type_account == '1'">Chỉnh sửa</a>
+              </div>
+              <!-- box-option  -->
+              <div id="box-option" role="tabpanel" class="wrap-box-option d-flex mt-2" [@slideInOut]="animationState">
+                <select  
+                class="form-control p-1" 
+                [(ngModel)]="chosenOption" 
+                name="status" 
+                ngModel>
+                  <option value="0" >Chờ xét duyệt</option>
+                  <option value="1">Đã xét duyệt</option>
+                </select>
+                <div class="ml-1 btn btn-default p-1" (click)="animationState='out'">Ok</div>
+                <div class="cancel d-flex align-items-center ml-1" (click)="animationState='out'">Hủy</div> 
+              </div>
+            </div>
+            <div class="wrap-btn text-right">
+              <button class="btn btn-primary">Đăng bài viết</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end right -->
+    </div>
+  </form>
+
+</div>

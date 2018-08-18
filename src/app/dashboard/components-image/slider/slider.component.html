@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-12 title mb-3">
+    <div class="title">Slider</div>
+  </div>
+
+  <!-- form -->
+  <div class="col-12">
+    <form #formSlider="ngForm" (ngSubmit)="onSubmit(formSlider)">
+      <!-- item -->
+      <div class="form-group" *ngFor="let slider of dataSlider; let i = index">
+        <span class="item">
+          <span class="delete"  (click)="deleteSlider(i)"><i class="fa fa-times"></i></span>
+          <div class="icon"><i class="fa fa-picture-o"></i></div>
+          <img src="{{slider?.link_img}}" class="item-img">
+          <input 
+          type="file" 
+          name="{{slider?.name}}" 
+          class="file"
+          ngModel
+          (change)="ngChangeSlider(slider?.name, i, $event)">
+        </span>
+        <!-- add -->
+      </div> 
+      <div class="more" (click)="addSlider()"><i class="fa fa-plus"></i></div>
+      <!-- end item -->
+      
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+  </div>
+  <!--  -->
+</div>

@@ -1,0 +1,55 @@
+<div id="news">
+    <div class="row">
+      <!-- title -->
+      <div class="col-12 title">
+        <div class="wrap">
+          <span class="icon">
+            <i class="fa fa-bookmark"></i>
+          </span>
+          <!-- tên loại tin tức -->
+          <span class="text">
+            {{ news?.name_category }}
+          </span>
+        </div>
+      </div>
+      <!-- end title -->
+    </div>
+    <div class="col-12 content">
+        <!-- Tên tin tức -->
+        <div class="title-content">
+            {{ news?.title_news }}
+        </div>
+        <div class="date-published">
+            <span class="wrap-date">
+                <span class="icon">
+                  <i class="fa fa-calendar"></i>
+                </span>
+                <!-- Ngày đăng -->
+                <span class="text">
+                    {{ news?.time_news }}
+                </span>
+            </span>
+            <span class="wrap-author">
+                <span class="icon">
+                    <i class="fa fa-pencil"></i>
+                </span>
+                <!-- Người đăng -->
+                <span class="text">
+                    {{ news?.name_user }}
+                </span>
+            </span>
+            <span class="wrap-views">
+                <span class="icon">
+                    <i class="fa fa-eye"></i>  
+                </span>
+                <!-- Lượt xem -->
+                <span class="text">
+                    {{ news?.view_news }}
+                </span>
+            </span>
+        </div>
+        <div class="text">
+            <div [innerHTML]="news?.describe_news | keepHtml"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+#contact .title{
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+#contact .title > .wrap > .icon{
+    margin-right: 10px;
+    display: inline-block;
+}
+#contact .title > .wrap > .icon i{
+    font-size: 25px;
+    color: #666666;
+}
+#contact .title > .wrap > .text{
+    color: rgb(240, 135, 15);
+    font-size: 30px;
+    font-weight: 700;
+    font-family: "Roboto Condensed Regular", "Open Sans", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+}
+#contact .content{
+    margin-top: 30px;
+}
+#contact .content .wrap-title-text{
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 3px;
+    margin-bottom: 15px
+}
+#contact .content .wrap-title-text .title-text{
+    border-bottom: 2px solid #1a99aa;
+    font-size: 30px;
+    padding-bottom: 5px;
+    font-family: "Roboto Condensed Regular", "Open Sans", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif;
+}
+#contact .content .wrap-info{
+    margin-bottom: 20px;
+}
+#contact .content .wrap-info .name-hopital{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+#contact .content .wrap-info .item {
+    display: flex;
+    font-size: 16px;
+}
+#contact .content .wrap-info .item .icon{
+    margin-right: 10px;
+    display: inline-block;
+}
+#contact .content .wrap-info .item .icon i{
+    color: #1a99aa;
+}
+#contact .content .info-customer{
+    margin-top: 20px;
+}
+#contact .content .info-customer label{
+    font-weight: 700;
+    color: #444444;
+}
+#contact .content .info-customer .text-note{
+    margin-top: 20px;
+    font-weight: 700;
+    color: #666666;
+    margin-bottom: 20px;
+}

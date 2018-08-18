@@ -1,0 +1,98 @@
+<div id="list-services">
+  <div class="row">
+    <div class="col-12">
+      <div class="icon-list-services text-center">
+          <i class="fa fa-diamond"></i>
+      </div>
+      <h1>
+        Các dịch vụ nổi bật tại ucare
+      </h1>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-4 service wow jackInTheBox" *ngFor="let service of list_service">
+      <figure class="wrap-img">
+        <div class="icon-themebg">
+          <i class="fa fa-asterisk"></i>
+        </div>
+        <img src="{{service.image_service}}" alt="{{service.title_service}}">
+      </figure>
+      <div class="title">
+        <a routerLink="/detail-service/{{service.id_service}}">{{service.title_service}}</a>
+      </div>
+      <div class="content">
+        {{service.excerpt_service}}
+      </div>
+    </div>
+
+    <!-- <div class="col-12 col-md-6 col-xl-4 service wow jackInTheBox">
+        <figure class="wrap-img">
+          <div class="icon-themebg">
+            <i class="fa fa-asterisk"></i>
+          </div>
+          <img src="assets/img/service2.jpg" alt="">
+        </figure>
+        <div class="title">
+          Dán răng sứ cực mỏng veneers - lumineers
+        </div>
+        <div class="content">
+            Lựa chọn hàng đầu cho răng bị mòn, mẻ, răng lệch, xỉn màu…Dán sứ Veneers-Lumineers cực mỏng chỉ 0,2-0,5mm là giải pháp nhanh chóng, ít mài răng, ít đau, mang lại hiệu quả thẩm mỹ cao được ưa chuộng trên khắp thế giới.
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 service wow jackInTheBox">
+          <figure class="wrap-img">
+            <div class="icon-themebg">
+              <i class="fa fa-asterisk"></i>
+            </div>
+            <img src="assets/img/service3.jpg" alt="">
+          </figure>
+          <div class="title">
+            Dán răng sứ cực mỏng veneers - lumineers
+          </div>
+          <div class="content">
+              Lựa chọn hàng đầu cho răng bị mòn, mẻ, răng lệch, xỉn màu…Dán sứ Veneers-Lumineers cực mỏng chỉ 0,2-0,5mm là giải pháp nhanh chóng, ít mài răng, ít đau, mang lại hiệu quả thẩm mỹ cao được ưa chuộng trên khắp thế giới.
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-4 service wow jackInTheBox">
+            <figure class="wrap-img">
+              <div class="icon-themebg">
+                <i class="fa fa-asterisk"></i>
+              </div>
+              <img src="assets/img/service4.jpg" alt="">
+            </figure>
+            <div class="title">
+              Dán răng sứ cực mỏng veneers - lumineers
+            </div>
+            <div class="content">
+                Lựa chọn hàng đầu cho răng bị mòn, mẻ, răng lệch, xỉn màu…Dán sứ Veneers-Lumineers cực mỏng chỉ 0,2-0,5mm là giải pháp nhanh chóng, ít mài răng, ít đau, mang lại hiệu quả thẩm mỹ cao được ưa chuộng trên khắp thế giới.
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 service wow jackInTheBox">
+              <figure class="wrap-img">
+                <div class="icon-themebg">
+                  <i class="fa fa-asterisk"></i>
+                </div>
+                <img src="assets/img/service5.jpg" alt="">
+              </figure>
+              <div class="title">
+                Dán răng sứ cực mỏng veneers - lumineers
+              </div>
+              <div class="content">
+                  Lựa chọn hàng đầu cho răng bị mòn, mẻ, răng lệch, xỉn màu…Dán sứ Veneers-Lumineers cực mỏng chỉ 0,2-0,5mm là giải pháp nhanh chóng, ít mài răng, ít đau, mang lại hiệu quả thẩm mỹ cao được ưa chuộng trên khắp thế giới.
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 service wow jackInTheBox">
+                <figure class="wrap-img">
+                  <div class="icon-themebg">
+                    <i class="fa fa-asterisk"></i>
+                  </div>
+                  <img src="assets/img/service6.jpg" alt="">
+                </figure>
+                <div class="title">
+                  Dán răng sứ cực mỏng veneers - lumineers
+                </div>
+                <div class="content">
+                    Lựa chọn hàng đầu cho răng bị mòn, mẻ, răng lệch, xỉn màu…Dán sứ Veneers-Lumineers cực mỏng chỉ 0,2-0,5mm là giải pháp nhanh chóng, ít mài răng, ít đau, mang lại hiệu quả thẩm mỹ cao được ưa chuộng trên khắp thế giới.
+                </div>
+              </div> -->
+  </div>
+</div>

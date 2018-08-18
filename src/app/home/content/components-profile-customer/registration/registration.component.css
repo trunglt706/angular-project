@@ -1,0 +1,43 @@
+#registered .title{
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+#registered .title > .wrap > .icon{
+    margin-right: 10px;
+    display: inline-block;
+}
+#registered .title > .wrap > .icon i{
+    font-size: 25px;
+    color: #666666;
+}
+#registered .title > .wrap > .text{
+    color: rgb(240, 135, 15);
+    font-size: 30px;
+    font-weight: 700;
+    font-family: "Roboto Condensed Regular", "Open Sans", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+}
+#registered .note .text-note{
+    font-weight: 700;
+    color: #555555
+}
+#registered .wrap-form{
+    margin-top: 20px;
+}
+#registered .wrap-form label{
+    font-weight: 700;
+}
+
+.title-calendar{
+    color: #056d4ee8;
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.tb-calendar{
+    margin-left: -25%;
+}

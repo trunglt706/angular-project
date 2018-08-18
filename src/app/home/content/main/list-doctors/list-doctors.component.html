@@ -1,0 +1,65 @@
+<div id="list-doctors" *ngIf="listDoctors">
+    <div class="row">
+        <div class="col-12">
+            <h1>Đội Ngũ Bác Sĩ</h1>
+        </div>
+        <!-- doctor -->
+        <div class="col-12 col-md-6 col-xl-4 doctor wow zoomIn" *ngFor="let doctor of listDoctors">
+            <div class="wrap-doctor">
+                <figure>
+                    <img src={{doctor.image_user}} alt="" width="100%">
+                </figure>
+                <div class="name">
+                    Bs. {{doctor.name_user}}
+                </div>
+                <div class="category-doctor">
+                    Chuyên Môn  {{doctor.name_position}}
+                </div>
+                <div class="phone">
+                    <div class="icon">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="text">
+                        {{doctor.phone_user}}
+                    </div>
+                </div>
+                <hr class="hr-color">
+                <div class="desc">
+                    <div class="item">
+                        <span class="icon"><i class="fa fa-get-pocket"></i></span>
+                        <span class="text">
+                            {{doctor.education}}
+                        </span>
+                    </div>
+                    <!-- <div class="item">
+                        <span class="icon"><i class="fa fa-get-pocket"></i></span>
+                        <span class="text">
+                            Nha khoa Thẩm Mỹ
+                        </span>
+                    </div>
+                    <div class="item">
+                        <span class="icon"><i class="fa fa-get-pocket"></i></span>
+                        <span class="text">
+                            Implant Nha Khoa
+                        </span>
+                    </div> 
+                    <div class="item">
+                        <span class="icon"><i class="fa fa-get-pocket"></i></span>
+                        <span class="text">
+                            Cắn khớp TMJ
+                        </span>
+                    </div>        -->
+                </div>
+                <div class="link">
+                    <div class="facebook">
+                        <i class="fa fa-facebook"></i>
+                    </div>
+                    <div class="email">
+                        <i class="fa fa-envelope-o"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End doctor -->
+    </div>
+</div>

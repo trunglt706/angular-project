@@ -1,0 +1,68 @@
+<!-- navbar-->
+<header class="header">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-holder d-flex align-items-center justify-content-between">
+        <div class="navbar-header">
+          <!-- <a id="toggle-btn" href="#" class="menu-btn"><i class="fa fa-th-list"></i></a> -->
+          <a class="navbar-brand">
+            <div class="brand-text d-none d-md-inline-block">QUẢN TRỊ HỆ THỐNG</div></a></div>
+            <div><a routerLink="/">Quay về trang chủ</a></div>
+        <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+          <!-- Notifications dropdown-->
+          <li class="nav-item dropdown" *ngIf="type_account != 3"> 
+            <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+              <i class="fa fa-bell"></i><span *ngIf="total_registration != 0"  class="badge badge-warning">{{ total_registration }}</span>
+            </a>
+            <ul aria-labelledby="notifications" class="dropdown-menu">
+              <!-- item -->
+              <li *ngFor="let registration of listRegistration" (click)="seeRegistration(registration?.id_registration)">
+                <a rel="nofollow" routerLink="/dashboard/edit-registration/{{registration?.id_registration}}" class="dropdown-item"> 
+                  <div class="notification d-flex justify-content-between">
+                    <div class="notification-content"><i class="fa fa-envelope"></i>{{ registration?.name_customer }} </div>
+                    <div class="notification-time"><small>{{ registration?.time_registration | date : ' h:mm a, dd/MM/yyyy' }}</small></div>
+                  </div>
+                </a>
+              </li>
+
+              <li *ngIf="type_account != 3"> 
+                <a *ngIf="total_registration != 0" (click)="seeAllRegistration()" rel="nofollow" routerLink="/dashboard/show-registration" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-bell"></i>Xem tất cả </strong></a>
+                
+                <!-- nếu không có đăng kí khám nào -->
+                <strong *ngIf="total_registration == 0" class="nofiti-registration"><span>Không có thông báo.</span></strong>
+              </li>
+            </ul>
+          </li> 
+          
+          <!-- Messages dropdown-->
+          <li class="nav-item dropdown" *ngIf="type_account != 3"> 
+            <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+              <i class="fa fa-envelope"></i><span *ngIf="total_contact != 0" class="badge badge-info">{{ total_contact }}</span>
+            </a>
+            <ul aria-labelledby="notifications" class="dropdown-menu">
+              <!-- item -->
+              <li *ngFor="let contact of listContact" (click)="seeContact(contact?.id_contact)">
+                <a rel="nofollow" routerLink="/dashboard/see-contact/{{contact?.id_contact}}" class="dropdown-item d-flex"> 
+                  <div class="msg-body">
+                    <h3 class="h5">{{ contact.name_contact }}</h3>
+                    <span>{{ contact.title_contact }}</span>
+                    <small>{{ contact.time_contact | date : ' h:mm a, dd/MM/yyyy' }}</small>
+                  </div>
+                </a>
+              </li>
+            
+              <li>
+                <a *ngIf="total_contact != 0" (click)="seeAllContact()" rel="nofollow" routerLink="/dashboard/show-contact" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Xem tất cả    </strong></a>
+                
+                <!-- nếu không có liên hệ nào -->
+                <strong *ngIf="total_contact == 0" class="nofiti-registration"><span>Không có thông báo.</span></strong>
+              </li>
+            </ul>
+          </li>
+          <!-- Log out-->
+          <li class="nav-item" (click)="logOut()"><a class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

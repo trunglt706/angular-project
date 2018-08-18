@@ -1,0 +1,67 @@
+<div class="row" id="show-all">
+  <div class="col-12 title mb-3">
+    Tất cả bài viết <button type="button" class="btn btn-secondary"><a routerLink="/dashboard/add-new-service">Viết bài mới</a></button>
+  </div>
+
+  <!-- search -->
+  <div class="col-12 search">
+    <div class="form-inline my-2 my-lg-0 d-flex justify-content-end">
+      <input 
+      class="form-control mr-sm-2" 
+      type="search" 
+      placeholder="Nhập từ khóa tìm kiếm..." 
+      [(ngModel)]="textSearch"
+      aria-label="Search">
+    </div>
+  </div>
+      
+  <div class="col-12 bg-light border rounded mt-2">
+    <table class="table table-hover">
+      <thead>
+        <tr class="text-dark">
+          <th scope="col">STT</th>
+          <th scope="col" (click)="sort('title_service')">Tiêu đề
+            <span class="sort_1" *ngIf="key == 'title_service' && reverse"></span>
+            <span class="sort" *ngIf="key == 'title_service' && !reverse"></span>
+          </th>
+          <th scope="col" (click)="sort('name_user')">Tác giả
+            <span class="sort_1" *ngIf="key == 'name_user' && reverse"></span>
+            <span class="sort" *ngIf="key == 'name_user' && !reverse"></span>
+          </th>
+          <th scope="col" (click)="sort('status')">Trạng thái
+            <span class="sort_1" *ngIf="key == 'status' && reverse"></span>
+            <span class="sort" *ngIf="key == 'status' && !reverse"></span>
+          </th>
+          <th scope="col" (click)="sort('time_service')">Ngày đăng
+            <span class="sort_1" *ngIf="key == 'time_service' && reverse"></span>
+            <span class="sort" *ngIf="key == 'time_service' && !reverse"></span>
+          </th>
+          <th class="text-center" scope="col">Chỉnh sửa</th>
+          <th class="text-center" scope="col">Xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of list_service | orderBy: key : reverse | searchService: textSearch | paginate: { itemsPerPage: perpages_number, currentPage: p }; let i=index;">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ service?.title_service }}</td>
+          <td>{{ service?.name_user }}</td>
+          <td>{{ service?.status == 0 ? 'Chờ xét duyệt' : 'Đã duyệt' }}</td>
+          <td>{{ service?.time_service }}</td>
+          <td class="text-center"><a routerLink="/dashboard/edit-service/{{ service.id_service }}"><i class="pointer text-primary fa fa-pencil"></i></a></td>
+          <td class="text-center"><i class="pointer text-danger fa fa-trash-o" (click)="delete(service.id_service)"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- pagination -->
+  <div class="mt-4 text-center w-100">
+    <pagination-controls  
+    class="my-pagination" 
+    (pageChange)="p = $event"
+    previousLabel=""
+    nextLabel=""
+    ></pagination-controls>
+  </div>
+
+</div>

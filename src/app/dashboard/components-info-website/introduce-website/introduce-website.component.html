@@ -1,0 +1,31 @@
+<div class="row" id="add-category-news">
+  <div class="col-12 title mb-3">
+    Giới thiệu
+  </div>
+  
+  <form (ngSubmit)="onSubmit(formIntroduce)" #formIntroduce="ngForm" class="col-12">
+    <!-- editor -->
+    <div class="form-group">
+      <div class="wrap-editor">
+        <div [froalaEditor]="options" 
+        name="textIntroduce"
+        class="form-control p-0" 
+        required
+        [ngClass]="(formIntroduce.controls.textIntroduce?.errors?.required && formIntroduce.controls.textIntroduce?.touched) || (formIntroduce.controls.textIntroduce?.errors?.required && formIntroduce.submitted)  ? 
+        'is-invalid' : 
+        ((formIntroduce.controls.textIntroduce?.touched && !formIntroduce.controls.textIntroduce?.errors?.required) || (formIntroduce.controls.textIntroduce?.errors?.required && formIntroduce.submitted)  ? 
+        'is-valid' : ''
+        )"
+        [(ngModel)]="textIntroduce"></div>
+        <div class="invalid-feedback">
+          Vui lòng nhập nội dung
+        </div>
+      </div>
+    </div>
+    
+    <!-- submit -->
+    <div class="form-group">
+      <button class="btn btn-primary">Cập nhật</button>
+    </div>
+  </form>
+</div>

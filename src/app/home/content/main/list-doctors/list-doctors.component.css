@@ -1,0 +1,91 @@
+#list-doctors{
+    margin: 50px 0;
+}
+#list-doctors h1{
+    color: #056d4ee8;
+    text-align: center;
+    cursor: pointer;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Roboto Condensed Regular", "Open Sans", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif;
+}
+#list-doctors .doctor{
+    overflow: hidden;
+    transition: all .5s;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 4px;
+}
+#list-doctors .doctor:hover{
+    box-shadow: 0 0 20px #e2d4d4;
+}
+#list-doctors .doctor .name{
+    font-size: 22px;
+    font-weight: 700;
+}
+#list-doctors .doctor .category-doctor{
+    color: #999999;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+#list-doctors .doctor .phone > div{
+    display: inline-block;
+}
+#list-doctors .doctor .phone .icon{
+    margin-right: 10px;
+}
+#list-doctors .doctor .phone .icon i{
+    font-size: 18px;
+    color: #666666;
+}
+#list-doctors .doctor .phone .text{
+    font-size: 16px;
+    color: #1a99aa;
+    font-weight: bold;
+}
+#list-doctors .doctor .hr-color{
+    background: #1a99aa;
+    width: 60%;
+    margin-left: 0;
+}
+#list-doctors .doctor .desc{
+    color: #757272;
+    font-weight: 600;
+    font-size: 16px;
+}
+#list-doctors .doctor .desc .item{
+    display: flex;
+}
+#list-doctors .doctor .desc .item .icon{
+    color: #757272;
+    font-size: 16px;
+    margin-right: 7px;
+}
+#list-doctors .doctor .link{
+    margin: 10px 0;
+}
+#list-doctors .doctor .link > div{
+    background: #f1f1f1;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #e59407;
+    cursor: pointer;
+    transition: all .5s;
+}
+#list-doctors .doctor .link > div.facebook:hover i{
+    color: rgb(45, 45, 240);
+}
+#list-doctors .doctor .link > div.facebook:hover{
+    border-color: #666666;
+}
+#list-doctors .doctor .link > div.email:hover i{
+    color: #f83a00;
+}
+#list-doctors .doctor .link > div.email:hover{
+    border-color:#666666;
+}   
+

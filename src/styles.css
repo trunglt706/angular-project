@@ -1,1 +1,314 @@
 /* You can add global styles to this file, and also import other style files */
+/* font-family: "Roboto Condensed Regular", "Open Sans", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif; */
+@font-face{
+    font-family: "Open Sans";
+    src:url("font/opensans/OpenSans-Regular.ttf");
+}
+@font-face{
+    font-family: "Open Sans Bold";
+    src:url("font/opensans/OpenSans-Bold.ttf");
+}
+@font-face{
+    font-family: "Roboto Condensed Regular";
+    src: url("font/roboto-condensed/RobotoCondensed-Regular.ttf");
+}
+body{
+    color: #333;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Open Sans", Arial, Tahoma, sans-serif;
+    /* Safari and Chrome  */
+    overflow-x:-webkit-marquee;
+    -webkit-marquee-direction: backwards;
+    -webkit-marquee-style: scroll;
+    -webkit-marquee-speed: fast;
+    -webkit-marquee-increment: small;
+    -webkit-marquee-repetition: infinite;
+
+    /* W3C  */
+    overflow-x: marquee-line;
+    marquee-direction: forward;
+    marquee-style: scroll;
+    marquee-speed: fast;
+    marquee-play-count: infinite;
+
+}
+/* custom scrollbar */
+/* ::-webkit-scrollbar{
+	width: 8px;
+}
+::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	background-color: #008080;
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, .3)
+}
+::-webkit-scrollbar-track{
+	border-radius: 10px;
+	background-color: #e2d3d3;
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, .3)
+} */
+/* end custom scrollbar */
+/* custom slider  */
+#slider ul.slick-dots{
+    bottom: 20px!important;
+}
+#slider .slick-dots li button:before{
+    font-size: 16px;
+    /* color: #007bff; */
+}
+#slider .slick-next{
+    right: 50px;
+    z-index: 10;
+}
+#slider .slick-prev{
+    left: 50px;
+    z-index: 10;
+}
+#slider .slick-prev:before{
+    content: "〈";
+    font-size: 24px;
+    color: black;
+    font-size: 60px;
+    font-weight: bold;
+}
+#slider .slick-next:before{
+    content: '〉';
+    font-size: 24px;
+    color: black;
+    font-size: 60px; 
+    font-weight: bold;
+}
+/* end custom slider  */
+
+/* custom class container in bootstrap */
+@media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+  @media (min-width: 1300px) {
+    .container {
+      max-width: 1250px;
+    }
+  }
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1350px;
+    }
+  }
+/* style general dashboard */
+  .text-bold {
+    font-weight: 700;
+  }
+  
+  .text-small {
+    font-size: 0.9rem;
+  }
+  
+  .text-xsmall {
+    font-size: 0.8rem;
+  }
+  
+  .text-gray {
+    color: #868e96;
+  }
+  
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  i {
+    display: inline-block;
+  }
+  
+  span {
+    display: inline-block;
+  }
+  
+  .mt-30px {
+    margin-top: 30px !important;
+  }
+  
+  .mb-30px {
+    margin-bottom: 30px !important;
+  }
+  
+  i[class*='icon-'] {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  
+  table {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .btn-xs {
+    font-size: 0.7em !important;
+    padding: 2px 5px !important;
+    border-radius: 2px !important;
+  }
+  
+  .badge {
+    font-weight: 400;
+    border-radius: 0;
+  }
+  
+  .badge.badge-primary {
+    background: #33b35a;
+  }
+  
+  .page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    -webkit-transition: width 0.3s linear;
+    transition: width 0.3s linear;
+    width: calc(100% - 200px);
+    background-color: #F4F7FA;
+    min-height: 100vh;
+    padding-bottom: 50px;
+  }
+  
+  .page.active {
+    width: calc(100% - 70px);
+  }
+  
+  h2 {
+    color: #555;
+    font-weight: 400;
+  }
+  
+  .breadcrumb-holder {
+    background: #eceeef;
+  }
+  
+  .breadcrumb-holder .breadcrumb {
+    padding: 15px 0;
+    font-size: 0.85em;
+    font-weight: 300;
+    color: #999;
+    margin-bottom: 0;
+  }
+  
+  .breadcrumb-holder .breadcrumb a:hover, .breadcrumb-holder .breadcrumb:focus {
+    text-decoration: none;
+  }
+  
+  .breadcrumb-holder .breadcrumb .container {
+    padding: 0;
+  }
+  
+  .card {
+    margin-bottom: 30px;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header h1,
+  .card-header h2,
+  .card-header h3,
+  .card-header h4,
+  .card-header h5,
+  .card-header h6 {
+    margin-bottom: 0;
+  }
+  
+  .card:not([class*="text"]) p {
+    color: #888;
+  }
+  
+  .display {
+    font-weight: 400 !important;
+  }
+  
+  .section-padding {
+    padding: 3rem 0;
+  }
+  
+  .section-no-padding-bottom {
+    padding-bottom: 0;
+  }
+  
+  section header {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .container-fluid {
+      padding: 0 3rem;
+    }
+  }
+  .form-group-material {
+    position: relative;
+    margin-bottom: 30px;
+  }
+  
+  input.input-material {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    color: #868e96;
+    font-weight: 300;
+  }
+  
+  input.input-material:focus {
+    border-color: #33b35a;
+    outline: none;
+  }
+  
+  input.input-material ~ label {
+    color: #aaa;
+    position: absolute;
+    top: 14px;
+    left: 0;
+    cursor: text;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    font-weight: 300;
+  }
+  
+  input.input-material ~ label.error {
+    color: #dc3545;
+    font-size: 0.75em;
+    position: absolute;
+    top: auto;
+    bottom: -30px;
+    left: 0;
+  }
+  
+  input.input-material ~ label.active {
+    font-size: 0.8em;
+    top: -10px;
+    color: #33b35a;
+  }
+  
+/* end style general dashboard */
+  
+  

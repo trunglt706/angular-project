@@ -1,0 +1,71 @@
+<div id="news-category">
+    <div class="row">
+      <!-- title -->
+      <div class="col-12 title">
+        <div class="wrap">
+          <span class="icon">
+            <i class="fa fa-bookmark"></i>
+          </span>
+          <span class="text">
+            {{ listsNews?.title }}
+          </span>
+        </div>
+      </div>
+      <!-- end title -->
+      <!-- item -->
+      <div class="col-12" *ngFor="let news of listsNews?.children_news">
+        <div class="item">
+            <div class="row content">
+              <div class="left col-3">
+                <figure>
+                  <img src="{{ news.image_news }}" alt="" width="100%">
+                </figure>
+              </div>
+              <div class="right col-9">
+                <!-- tiêu đề tin tức -->
+                <div class="titile-content">
+                    <div class="text">
+                      <a routerLink="/news-categorys/{{ listsNews?.id }}/{{ news.id_news }}">{{ news.title_news }}</a>
+                    </div>
+                </div>
+                <!-- end tiêu đề tin tức -->
+                <div class="date-published">
+                  <span class="wrap-date">
+                    <span class="icon">
+                      <i class="fa fa-calendar"></i>
+                    </span>
+                    
+                    <span class="text">
+                      {{ news.time_news }}
+                    </span>
+                  </span>
+                  <span class="wrap-author">
+                      <span class="icon">
+                          <i class="fa fa-pencil"></i>
+                      </span>
+                      <span class="text">
+                        {{ news.name_user }}
+                      </span>
+                  </span>
+                  <span class="wrap-views">
+                    <span class="icon">
+                      <i class="fa fa-eye"></i>  
+                    </span>
+                    <span class="text">
+                      {{ news.view_news }}
+                    </span>
+                  </span>
+                </div>
+                <div class="text">
+                    {{ news.excerpt_news }}
+                    <a class="btn btn-primary" routerLink="/news-categorys/{{ listsNews?.id }}/{{ news.id_news }}">
+                      Chi tiết
+                    </a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- end item -->
+    </div>
+  </div>

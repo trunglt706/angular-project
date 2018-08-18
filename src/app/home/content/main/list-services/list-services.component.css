@@ -1,0 +1,70 @@
+#list-services{
+    margin: 50px 0;
+    word-spacing: 3px;
+}
+#list-services .icon-list-services i{
+    font-size: 40px;
+    color: #056d4ee8;
+    margin: 10px 0;
+}
+#list-services h1{
+    color: #056d4ee8;
+    text-align: center;
+    cursor: pointer;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Roboto Condensed Regular", "Open Sans", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif;
+}
+#list-services .service{
+    overflow: hidden;
+    transition: all .5s;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 4px;
+}
+#list-services .service:hover{
+    box-shadow: 0 0 20px #e2d4d4;
+}
+#list-services .service:hover .wrap-img .icon-themebg{
+    width: 0%;
+    visibility: hidden;
+}
+#list-services .service:hover .wrap-img .icon-themebg i{
+    left: -50px;
+}
+#list-services .service .wrap-img{
+    position: relative;
+}
+#list-services .service .wrap-img img{
+    width: 100%;
+}
+#list-services .service .wrap-img .icon-themebg{
+    position: absolute;
+    width: 70px;
+    height: 100%;
+    background-color: #1a99aa;
+    transition: all .5s;
+}
+#list-services .service .wrap-img .icon-themebg i{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    font-size: 40px;
+    color: #ffffff;
+    text-align: center;
+    transform: translate(0, -50%);
+    transition: all .5s;
+    left: 0;
+}
+#list-services .service .title a{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #1a99aa;
+    text-decoration: none;
+}
+#list-services .service .content{
+    color: #666666;
+    font-size: 16px;
+}

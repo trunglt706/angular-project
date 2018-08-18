@@ -1,0 +1,138 @@
+<div class="row" id="add-news">
+  <div class="col-12 title mb-3">
+    Thêm bài viết dịch vụ
+  </div>
+  <form (ngSubmit)="onSubmit(formAddService)" #formAddService="ngForm" class="col-12">
+    <div class="row">
+      <!-- left -->
+      <div class="col-8 left">
+        <div class="title-new">
+          <!-- title news -->
+          <div class="form-group">
+            <input type="text" 
+            class="form-control" 
+            placeholder="Nhập tiêu đề dịch vụ"
+            name="title"
+            #title="ngModel"
+            ngModel
+            required
+            [ngClass]="(title?.errors?.required && title?.touched) || (title?.errors?.required && formAddService.submitted)  ? 
+            'is-invalid' : 
+            ((title?.touched && !title?.errors?.required) || (title?.errors?.required && formAddService.submitted)  ? 
+            'is-valid' : ''
+            )"
+            >
+            <div class="invalid-feedback">
+              Vui lòng nhập tiêu đề !!
+            </div>
+          </div>
+          <!-- excerpt news -->
+          <div class="form-group">
+              <textarea type="text" 
+              class="form-control" 
+              placeholder="Mô tả ngắn"
+              name="excerpt"
+              #excerpt="ngModel"
+              ngModel
+              required
+              [ngClass]="(excerpt?.errors?.required && excerpt?.touched) || (excerpt?.errors?.required && formAddService.submitted)  ? 
+              'is-invalid' : 
+              ((excerpt?.touched && !excerpt?.errors?.required) || (excerpt?.errors?.required && formAddService.submitted)  ? 
+              'is-valid' : ''
+              )"
+              ></textarea>
+              <div class="invalid-feedback">
+                Vui lòng nhập mô tả ngắn !!
+              </div>
+            </div>
+          <!-- editor -->
+          <div class="wrap-editor">
+            <div [froalaEditor]="options" 
+            name="textService"
+            class="form-control p-0" 
+            ngModel 
+            required
+            #textService="ngModel"
+            [ngClass]="(textService?.errors?.required && textService?.touched) || (textService?.errors?.required && formAddService.submitted)  ? 
+            'is-invalid' : 
+            ((textService?.touched && !textService?.errors?.required) || (textService?.errors?.required && formAddService.submitted)  ? 
+            'is-valid' : ''
+            )"
+            ></div>
+            <div class="invalid-feedback">
+              Vui lòng nhập nội dung
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- right -->
+      <div class="col-4 right">
+
+        <!-- Ảnh đại diện -->
+        <div id="new-updates" class="card updates recent-updated">
+          <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#image-post" aria-expanded="true" aria-controls="updates-box">Ảnh đại diện</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#image-post" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+          </div>
+          <div id="image-post" role="tabpanel" class="collapse show">
+
+            <!-- item -->
+            <div class="item d-flex text-small flex-wrap">
+              <input type="file" 
+              class="form-control-file" 
+              id="exampleFormControlFile1"
+              name="fileImg"
+              (change)="onChange($event)"
+              ngModel
+              #fileImg="ngModel"
+              
+              >
+              <div class="form-control invisible"
+              [ngClass]="isType ? '' : 'is-invalid'"
+              ></div>
+              <!-- thông báo lỗi -->
+              <div class="invalid-feedback">
+                {{ textErroFile }}
+              </div>
+            </div>
+            <!-- end item -->
+          </div>
+        </div>
+        
+        <!-- Đăng Bài Viết  -->
+        <div id="new-updates" class="card updates recent-updated">
+          <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Đăng bài viết</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+          </div>
+          <div id="updates-box" role="tabpanel" class="collapse show">
+            <!-- item -->
+            <div class="item d-flex text-small flex-wrap">
+              <div class="icon"><i class="fa fa-key"></i></div>
+              <div class="text">Trạng thái: <span class="text-bold">
+                {{ chosenOption == 0 ? 'Chờ xét duyệt' : 'Đã xét duyệt' }}
+                </span> <a class="edit" (click)="toggleShowDiv()" *ngIf="type_account == '1'">Chỉnh sửa</a>
+              </div>
+              <!-- box-option  -->
+              <div id="box-option" role="tabpanel" class="wrap-box-option d-flex mt-2" [@slideInOut]="animationState">
+                <select  
+                class="form-control p-1" 
+                [(ngModel)]="chosenOption" 
+                name="status" 
+                ngModel>
+                  <option value="0" >Chờ xét duyệt</option>
+                  <option value="1">Đã xét duyệt</option>
+                </select>
+                <div class="ml-1 btn btn-default p-1" (click)="animationState='out'">Ok</div>
+                <div class="cancel d-flex align-items-center ml-1" (click)="animationState='out'">Hủy</div> 
+              </div>
+            </div>
+            <div class="wrap-btn text-right">
+              <button class="btn btn-primary">Đăng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end right -->
+    </div>
+  </form>
+
+</div>

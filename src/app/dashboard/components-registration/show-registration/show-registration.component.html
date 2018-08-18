@@ -1,0 +1,95 @@
+<div class="row" id="show-all">
+    <div class="col-12 title mb-3">
+      Tất cả lịch đặt khám
+    </div>
+  
+    <!-- search -->
+    <div class="col-12 search">
+      <div class="form-inline my-2 my-lg-0 d-flex justify-content-end">
+        <input class="form-control mr-sm-2" [(ngModel)]="textSearch" type="search" placeholder="Nhập từ khóa tìm kiếm..." aria-label="Search">
+      </div>
+    </div>
+        
+    <div class="col-12 bg-light border rounded mt-2">
+      <table class="table table-hover">
+        <thead>
+          <tr class="text-dark">
+            <th scope="col">STT</th>
+
+            <!-- tên khách hàng -->
+            <th scope="col" (click)="sort('name_customer')">Tên
+              <span class="sort_1" *ngIf="key == 'name_customer' && reverse"></span>
+              <span class="sort" *ngIf="key == 'name_customer' && !reverse"></span>
+            </th>
+            <!-- số điện thoại -->
+            <th scope="col" (click)="sort('phone_customer')">SĐT
+              <span class="sort_1" *ngIf="key == 'phone_customer' && reverse"></span>
+              <span class="sort" *ngIf="key == 'phone_customer' && !reverse"></span>
+            </th>
+            <!-- email -->
+            <th scope="col" (click)="sort('email_customer')">Email
+              <span class="sort_1" *ngIf="key == 'email_customer' && reverse"></span>
+              <span class="sort" *ngIf="key == 'email_customer' && !reverse"></span>
+            </th>
+            <!-- địa chỉ -->
+            <th scope="col" (click)="sort('address_customer')">Địa chỉ
+              <span class="sort_1" *ngIf="key == 'address_customer' && reverse"></span>
+              <span class="sort" *ngIf="key == 'address_customer' && !reverse"></span>
+            </th>
+
+            <!-- thời gian khám -->
+            <th scope="col" (click)="sort('time_customer')">Thời gian khám
+                <span class="sort_1" *ngIf="key == 'time_customer' && reverse"></span>
+                <span class="sort" *ngIf="key == 'time_customer' && !reverse"></span>
+              </th>
+
+            <!-- ngày đến khám -->
+            <th scope="col" (click)="sort('date_customer')">Ngày khám
+              <span class="sort_1" *ngIf="key == 'date_customer' && reverse"></span>
+              <span class="sort" *ngIf="key == 'date_customer' && !reverse"></span>
+            </th>
+
+            <!-- nội dung -->
+            <th scope="col" (click)="sort('content')">Nội dung
+                <span class="sort_1" *ngIf="key == 'content' && reverse"></span>
+                <span class="sort" *ngIf="key == 'content' && !reverse"></span>
+            </th>
+
+            <!-- bác sĩ khám -->
+            <th scope="col" (click)="sort('name_user')">Bác sĩ
+                <span class="sort_1" *ngIf="key == 'name_user' && reverse"></span>
+                <span class="sort" *ngIf="key == 'name_user' && !reverse"></span>
+            </th>
+
+            <th class="text-center" scope="col">Xem</th>
+            <th class="text-center" scope="col">Xóa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let registration of list_registration | orderBy: key : reverse | searchRegistration : textSearch | paginate: { itemsPerPage: perpages_number, currentPage: p }; let i=index;">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ registration?.name_customer }}</td>
+            <td>{{ registration?.phone_customer }}</td>
+            <td>{{ registration?.email_customer }}</td>
+            <td>{{ registration?.address_customer }}</td>
+            <td>{{ registration?.time_customer }}</td>
+            <td>{{ registration?.date_customer }}</td>
+            <td>{{ registration?.content }}</td>
+            <td>{{ registration?.name_user }}</td>
+            <td class="text-center"><a routerLink="/dashboard/edit-registration/{{ registration.id_registration }}"><i class="pointer text-primary fa fa-eye"></i></a></td>
+            <td class="text-center"><i class="pointer text-danger fa fa-trash-o" (click)="delete(registration.id_registration)"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- pagination -->
+    <div class="mt-4 text-center w-100">
+      <pagination-controls
+      class="my-pagination"
+      (pageChange)="p = $event"
+      previousLabel=""
+      nextLabel=""
+      ></pagination-controls>
+    </div>
+  
+  </div>

@@ -1,0 +1,36 @@
+#show-all .title{
+    font-family: "Roboto Condensed Regular", "Open Sans", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+#show-all a{
+    text-decoration: none;
+    color: #fff;
+}
+.pointer{
+    cursor: pointer;
+}
+
+.my-pagination /deep/ ul{
+    padding: 0;
+}
+
+.sort{
+    border-width: 4px 4px 0 4px;
+    border-style: solid;
+    border-color: #666666 transparent;
+}
+
+
+.sort_1{
+    border-width: 0 4px 4px 4px;
+    border-style: solid;
+    border-color: #666666 transparent;
+}
+
+table > thead > tr > th {
+    cursor: pointer;
+} 
+
+label{
+    font-weight: 700;
+}

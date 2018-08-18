@@ -1,0 +1,128 @@
+<div class="row" >
+  <div class="col-12 title mb-3">
+    Lịch làm việc
+  </div>
+
+  <div class="col-12 bg-light py-4 border rounded">
+    <form #formWorkingCalendar="ngForm" (ngSubmit)="submit(formWorkingCalendar)">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center" scope="col"></th>
+
+            <th class="text-center" scope="col">S2</th>
+            <th class="text-center" scope="col">C2</th>
+            <th class="text-center" scope="col">T2</th>
+
+            <th class="text-center" scope="col">S3</th>
+            <th class="text-center" scope="col">C3</th>
+            <th class="text-center" scope="col">T3</th>
+
+            <th class="text-center" scope="col">S4</th>
+            <th class="text-center" scope="col">C4</th>
+            <th class="text-center" scope="col">T4</th>
+
+            <th class="text-center" scope="col">S5</th>
+            <th class="text-center" scope="col">C5</th>
+            <th class="text-center" scope="col">T5</th>
+
+            <th class="text-center" scope="col">S6</th>
+            <th class="text-center" scope="col">C6</th>
+            <th class="text-center" scope="col">T6</th>
+
+            <th class="text-center" scope="col">S7</th>
+            <th class="text-center" scope="col">C7</th>
+            <th class="text-center" scope="col">T7</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let calendarDoctor of working_calendar">
+            <th scope="row">{{ calendarDoctor?.name_user }}</th>
+            <!-- S2 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st2 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C2 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct2 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T2 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt2 == '1'" class="fa fa-check"></i>
+            </td>
+            
+            <!-- S3 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st3 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C3 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct3 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T3 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt3 == '1'" class="fa fa-check"></i>
+            </td>
+
+            <!-- S4 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st4 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C4 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct4 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T4 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt4 == '1'" class="fa fa-check"></i>
+            </td>
+
+            <!-- S5 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st5 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C5 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct5 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T5 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt5 == '1'" class="fa fa-check"></i>
+            </td>
+
+            <!-- S6 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st6 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C6 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct6 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T6 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt6 == '1'" class="fa fa-check"></i>
+            </td>
+
+            <!-- S7 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.st7 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- C7 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.ct7 == '1'" class="fa fa-check"></i>
+            </td>
+            <!-- T7 -->
+            <td class="text-center">
+              <i *ngIf="calendarDoctor?.tt7 == '1'" class="fa fa-check"></i>
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+
+    </form>
+  </div>
+
+
+</div>

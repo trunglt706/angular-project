@@ -1,0 +1,42 @@
+#news .title{
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+#news .title > .wrap > .icon{
+    margin-right: 10px;
+    display: inline-block;
+}
+#news .title > .wrap > .icon i{
+    font-size: 25px;
+    color: #666666;
+}
+#news .title > .wrap > .text{
+    color: rgb(240, 135, 15);
+    font-size: 30px;
+    font-weight: 700;
+    font-family: "Roboto Condensed Regular", "Open Sans", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+}
+#news .content .title-content{
+    color: #1a99aa;
+    font-size: 25px;
+    font-weight: 700;
+}
+#news .date-published{
+    color: #666666;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+#news .date-published .icon{
+    margin-right: 5px;
+}
+#news .date-published > span{
+    margin-right: 10px;
+}
+#news .text{
+    word-spacing: 2px;
+    font-family:  "Open Sans", "Roboto Condensed Regular", "Roboto Condensed Regular", "Open Sans", Arial, Helvetica, sans-serif;
+}

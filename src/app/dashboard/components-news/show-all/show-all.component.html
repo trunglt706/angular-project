@@ -1,0 +1,71 @@
+<div class="row" id="show-all">
+  <div class="col-12 title mb-3">
+    Tất cả bài viết <button type="button" class="btn btn-secondary"><a routerLink="/dashboard/add-news">Viết bài mới</a></button>
+  </div>
+
+  <!-- search -->
+  <div class="col-12 search">
+    <div class="form-inline my-2 my-lg-0 d-flex justify-content-end">
+      <input class="form-control mr-sm-2" [(ngModel)]="textSearch" type="search" placeholder="Nhập từ khóa tìm kiếm..." aria-label="Search">
+    </div>
+  </div>
+      
+  <div class="col-12 bg-light border rounded mt-2">
+    <table class="table table-hover">
+      <thead>
+        <tr class="text-dark">
+          <th scope="col">STT</th>
+          <!-- tiêu đề -->
+          <th scope="col" (click)="sort('title_news')">Tiêu đề 
+            <span class="sort_1" *ngIf="key == 'title_news' && reverse"></span>
+            <span class="sort" *ngIf="key == 'title_news' && !reverse"></span>
+          </th>
+          <!-- tác giả -->
+          <th scope="col" (click)="sort('name_user')">Tác giả
+            <span class="sort_1" *ngIf="key == 'name_user' && reverse"></span>
+            <span class="sort" *ngIf="key == 'name_user' && !reverse"></span>
+          </th>
+          <!-- chuyên mục -->
+          <th scope="col" (click)="sort('name_category')">Chuyên mục
+            <span class="sort_1" *ngIf="key == 'name_category' && reverse"></span>
+            <span class="sort" *ngIf="key == 'name_category' && !reverse"></span>
+          </th>
+          <!-- trạng thái -->
+          <th scope="col" (click)="sort('status')">Trạng thái
+            <span class="sort_1" *ngIf="key == 'status' && reverse"></span>
+            <span class="sort" *ngIf="key == 'status' && !reverse"></span>
+          </th>
+          <!-- ngày đăng -->
+          <th scope="col" (click)="sort('time_news')">Ngày đăng
+            <span class="sort_1" *ngIf="key == 'time_news' && reverse"></span>
+            <span class="sort" *ngIf="key == 'time_news' && !reverse"></span>
+          </th>
+          <th class="text-center" scope="col">Chỉnh sửa</th>
+          <th class="text-center" scope="col">Xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let news of list_news | orderBy: key : reverse | searchNews : textSearch | paginate: { itemsPerPage: perpages_number, currentPage: p }; let i=index;">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ news?.title_news }}</td>
+          <td>{{ news?.name_user }}</td>
+          <td>{{ news?.name_category }}</td>
+          <td>{{ news?.status == 0 ? 'Chờ xét duyệt' : 'Đã duyệt' }}</td>
+          <td>{{ news?.time_news }}</td>
+          <td class="text-center"><a routerLink="/dashboard/edit-news/{{ news.id_news }}"><i class="pointer text-primary fa fa-pencil"></i></a></td>
+          <td class="text-center"><i class="pointer text-danger fa fa-trash-o" (click)="delete(news.id_news)"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- pagination -->
+  <div class="mt-4 text-center w-100">
+    <pagination-controls
+    class="my-pagination"
+    (pageChange)="p = $event"
+    previousLabel=""
+    nextLabel=""
+    ></pagination-controls>
+  </div>
+
+</div>

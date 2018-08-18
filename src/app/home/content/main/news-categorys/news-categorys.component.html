@@ -1,0 +1,45 @@
+<div id="news-categorys">
+  <div class="row">
+    <div class="col-12">
+        <h1>Tin tức</h1>
+    </div>
+    <!-- news-category -->
+    <div class="col-12 col-md-6 col-xl-4 news-category wow flipInX" *ngFor="let newsCategory of list_newsCategorys">
+      <div class="title">
+        <span class="text-title">
+          <a routerLink='/news-categorys/{{ newsCategory.id }}'> {{ newsCategory.name }} </a>
+        </span>
+      </div>
+     
+      <div class="content">
+        <!-- item-first -->
+        <div class="item-first" *ngIf="newsCategory.children_first_news?.id_news">
+          <figure class="wrap-img">
+              <a routerLink='/news-categorys/{{ newsCategory.id }}/{{ newsCategory.children_first_news?.id_news }}'>
+                <img src="{{newsCategory.children_first_news?.image_news}}" alt="" width="100%">
+              </a>
+          </figure>
+          <div class="title-item-first">
+            <a routerLink="/news-categorys/{{ newsCategory.id }}/{{ newsCategory.children_first_news?.id_news }}">
+              {{ newsCategory.children_first_news?.title_news }}
+            </a>
+          </div>
+          <div class="content-item-first">
+            {{ newsCategory.children_first_news?.excerpt_news }}
+          </div>
+        </div>
+        <!-- end item-first -->
+
+        <!-- item -->
+        <div class="item" *ngFor="let news of newsCategory.children_news">
+          <div class="item-title">
+            <a routerLink='/news-categorys/{{ newsCategory.id }}/{{ news?.id_news }}'>
+            {{ news.title_news }}
+          </a>
+          </div>
+        </div>
+        <!-- end item -->
+      </div>
+    </div>
+  </div>
+</div>

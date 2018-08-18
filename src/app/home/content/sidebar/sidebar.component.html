@@ -1,0 +1,7 @@
+<div id="main-sidebar">
+  <div class="wrap-img">
+    <figure class="item" *ngFor="let advertisement of array_advertisement | orderBy: key : reverse">
+      <img src="{{advertisement?.link_img}}" alt="" width="100%">
+    </figure>
+  </div>
+</div>
